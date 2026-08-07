@@ -3,7 +3,7 @@ title: 'Getting Started with the GitHub Copilot app'
 description: 'Learn about the GitHub Copilot app, a desktop experience built for agent-native development. Understand its key features and who it''s for.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-06-17
+lastUpdated: 2026-08-07
 estimatedReadingTime: '8 minutes'
 tags:
   - copilot-app
@@ -49,6 +49,12 @@ The central hub of the Copilot app is the **My Work** view. This dashboard shows
 - **Overall status**: A quick overview of what's in progress, what's done, and what's blocked
 
 Instead of checking GitHub, your CLI, and VS Code for updates, everything is in one place.
+
+### Managing Multiple Sessions
+
+The **Sessions** tab and sidebar let you manage several concurrent sessions from one place. Each session keeps its own conversation, worktree, and branch, so you can switch between parallel tasks without losing context. Select a session to inspect its timeline, steer the agent, or return to the work it has completed.
+
+This is especially useful for splitting independent bug fixes or feature tasks across agents while keeping a single overview of progress.
 
 ### Automations
 
@@ -149,6 +155,8 @@ Each session runs in its own worktree with its own isolated environment. You can
 ### Launching Sessions from the Terminal with Deep Links
 
 The GitHub Copilot app supports URL deep links. This is useful when you want to open the app or start a session directly from your terminal workflow.
+
+You can also open the current CLI session in the desktop app with the CLI's `/app` command. This requires GitHub Copilot app 1.1.3 or later.
 
 Supported schemes:
 
@@ -283,5 +291,10 @@ Enable Agent Merge to automate routine PR workflows:
 - **Set Up Your Repository**: [Copilot Configuration Basics](../copilot-configuration-basics/) — Add custom agents, skills, and instructions
 - **Understand Agent Skills**: [Creating Effective Skills](../creating-effective-skills/) — Build reusable task guidance
 - **Automate with Hooks**: [Automating with Hooks](../automating-with-hooks/) — Add guardrails to autonomous work
+
+## Further Reading
+
+- [Copilot CLI 1.0.79 release](https://github.com/github/copilot-cli/releases/tag/v1.0.79-5) — concurrent session management
+- [GitHub Copilot app](https://github.com/features/ai/github-app) — download and product information
 
 ---

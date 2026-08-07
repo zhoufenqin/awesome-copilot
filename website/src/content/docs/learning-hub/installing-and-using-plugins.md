@@ -3,7 +3,7 @@ title: 'Installing and Using Plugins'
 description: 'Learn how to find, install, and manage plugins that extend GitHub Copilot CLI with reusable agents, skills, hooks, and integrations.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-08-04
+lastUpdated: 2026-08-07
 relatedArticles:
   - ./building-custom-agents.md
   - ./creating-effective-skills.md
@@ -28,9 +28,15 @@ A plugin bundles one or more of the following components:
 | **Hooks** | Event handlers that intercept agent behavior | `hooks.json` or `hooks/` |
 | **MCP Servers** | Model Context Protocol integrations for external tools | `.mcp.json` or `.github/mcp.json` |
 | **LSP Servers** | Language Server Protocol integrations | `lsp.json` or `.github/lsp.json` |
-| **Extensions** | IDE extensions installable via the plugin marketplace (v1.0.62+) | `extensions/` |
+| **Extensions** | IDE extensions installable via the plugin marketplace (v1.0.62+) | `extensions/` or `com.github.copilot/extensions/` |
 
 A plugin might include all of these or just one — for example, a plugin could provide a single specialized agent, or an entire development toolkit with multiple agents, skills, hooks, and MCP server configurations working together.
+
+### Extensions in Open Plugin Spec v1
+
+Copilot CLI can load extensions from the Open Plugin Spec v1 `com.github.copilot/extensions/` directory. This lets a spec-compatible plugin ship its extension components in the conventional location alongside its agents, skills, and other resources.
+
+Use the extension directory when publishing a plugin intended to work across tools that implement the Open Plugin Spec. For plugins authored specifically for this repository, see [Working with Canvas Extensions](../working-with-canvas-extensions/) for the source layout and packaging guidance.
 
 ### Example: What a Plugin Looks Like
 
@@ -338,5 +344,10 @@ A: The plugin's agents, skills, and hooks are removed from Copilot, and any cach
 - **Create Skills**: [Creating Effective Skills](../creating-effective-skills/) — Build skills that can be included in plugins
 - **Build Agents**: [Building Custom Agents](../building-custom-agents/) — Create agents to package in plugins
 - **Add Hooks**: [Automating with Hooks](../automating-with-hooks/) — Configure hooks for plugin automation
+
+## Further Reading
+
+- [Copilot CLI 1.0.79-7 release](https://github.com/github/copilot-cli/releases/tag/v1.0.79-7) — Open Plugin Spec extension packaging and first-party plugin updates
+- [Creating plugins for Copilot CLI](https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/plugins-creating) — official plugin authoring guide
 
 ---
