@@ -3,7 +3,7 @@ title: 'Installing and Using Plugins'
 description: 'Learn how to find, install, and manage plugins that extend GitHub Copilot CLI with reusable agents, skills, hooks, and integrations.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-08-04
+lastUpdated: 2026-08-09
 relatedArticles:
   - ./building-custom-agents.md
   - ./creating-effective-skills.md
@@ -301,6 +301,12 @@ Open Plugin Spec v1 also standardizes how MCP server configuration is bundled in
 
 This is useful for plugins that bundle dedicated tooling (for example, a database plugin that ships its own MCP server) — users get both the agent/skill and the required MCP server in a single install step.
 
+### Bundling Canvas Extensions
+
+Recent versions of Copilot CLI also support extensions in plugins that use the Agent Plugins specification. These plugins can ship canvas or other Copilot extensions in a `com.github.copilot/extensions/` directory alongside their other plugin components. This lets a single install provide the agents, skills, hooks, and interactive extension surface needed for a complete workflow.
+
+When evaluating an Open Plugin Spec plugin, check its manifest and the contents of the extensions directory before installing, just as you would review bundled hooks or MCP servers.
+
 ## Best Practices
 
 - **Start with a marketplace plugin** before building your own — there may already be one that fits your needs
@@ -338,5 +344,10 @@ A: The plugin's agents, skills, and hooks are removed from Copilot, and any cach
 - **Create Skills**: [Creating Effective Skills](../creating-effective-skills/) — Build skills that can be included in plugins
 - **Build Agents**: [Building Custom Agents](../building-custom-agents/) — Create agents to package in plugins
 - **Add Hooks**: [Automating with Hooks](../automating-with-hooks/) — Configure hooks for plugin automation
+
+## Further Reading
+
+- [Copilot CLI 1.0.79-8 release notes](https://github.com/github/copilot-cli/releases/tag/v1.0.79-8)
+- [GitHub Copilot CLI plugin documentation](https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/plugins)
 
 ---

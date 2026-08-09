@@ -3,7 +3,7 @@ title: 'Agents and Subagents'
 description: 'Learn how delegated subagents differ from primary agents, when to use them, and how to launch them in VS Code and Copilot CLI.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-07-01
+lastUpdated: 2026-08-09
 estimatedReadingTime: '9 minutes'
 tags:
   - agents
@@ -134,6 +134,14 @@ The important behavior is different from a single chat turn:
 
 That makes `/fleet` a practical way to launch subagents even if you are not authoring custom agent files yourself.
 
+Copilot CLI can also combine planning with autonomous execution. Use `--plan` with `--mode autopilot` to have the CLI create a plan first and then implement it without pausing for approval:
+
+```bash
+copilot --plan --mode autopilot -p "Refactor the authentication service and add tests."
+```
+
+This is useful when you want a visible planning phase while still allowing a trusted, well-scoped task to continue automatically.
+
 ### Rubber-duck agent
 
 Available in `/experimental` (v1.0.42+), the **rubber-duck agent** applies a novel multi-model pattern: when you're working in a GPT-powered session, the rubber-duck agent internally routes certain requests through Claude to provide a second perspective. The idea is similar to rubber-duck debugging — talking through a problem with a different "listener" often surfaces assumptions or blind spots you didn't notice.
@@ -217,5 +225,10 @@ Yes. In v1.0.66+, usage-based billing users can configure **subagent concurrency
 - Read [Building Custom Agents](../building-custom-agents/) to design coordinator and worker agents.
 - Revisit [What are Agents, Skills, and Instructions](../what-are-agents-skills-instructions/) for the broader customization model.
 - Keep the [GitHub Copilot Terminology Glossary](../github-copilot-terminology-glossary/) nearby when comparing terminology across products.
+
+## Further Reading
+
+- [Copilot CLI 1.0.79-8 release notes](https://github.com/github/copilot-cli/releases/tag/v1.0.79-8)
+- [GitHub Copilot custom agents documentation](https://docs.github.com/en/copilot/customizing-copilot/github-copilot-agents)
 
 ---
