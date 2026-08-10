@@ -3,7 +3,7 @@ title: 'Installing and Using Plugins'
 description: 'Learn how to find, install, and manage plugins that extend GitHub Copilot CLI with reusable agents, skills, hooks, and integrations.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-08-04
+lastUpdated: 2026-08-10
 relatedArticles:
   - ./building-custom-agents.md
   - ./creating-effective-skills.md
@@ -147,13 +147,14 @@ To automatically register an additional marketplace for everyone working in a re
   "extraKnownMarketplaces": [
     {
       "name": "my-org-plugins",
-      "source": "my-org/internal-plugins"
+      "source": "my-org/internal-plugins",
+      "autoUpdate": true
     }
   ]
 }
 ```
 
-With this in place, team members automatically get the `my-org-plugins` marketplace available without running a separate `marketplace add` command. This replaces the older `marketplaces` setting, which was removed in v1.0.16.
+With this in place, team members automatically get the `my-org-plugins` marketplace available without running a separate `marketplace add` command, and the marketplace catalog refreshes at session start. Set `autoUpdate` to `false` or omit it when you want to control updates manually. This replaces the older `marketplaces` setting, which was removed in v1.0.16.
 
 ### Pinning a Marketplace to a Specific Commit
 
@@ -301,6 +302,13 @@ Open Plugin Spec v1 also standardizes how MCP server configuration is bundled in
 
 This is useful for plugins that bundle dedicated tooling (for example, a database plugin that ships its own MCP server) — users get both the agent/skill and the required MCP server in a single install step.
 
+### Bundling Copilot extensions
+
+Agent Plugins spec plugins can also ship Copilot app extensions in a
+`com.github.copilot/extensions/` directory. This lets a plugin distribute
+reusable canvas or other app extension assets alongside its agents, skills,
+hooks, and MCP configuration.
+
 ## Best Practices
 
 - **Start with a marketplace plugin** before building your own — there may already be one that fits your needs
@@ -331,6 +339,11 @@ A: Yes. You can create a private plugin marketplace in an internal GitHub reposi
 **Q: What happens if I uninstall a plugin?**
 
 A: The plugin's agents, skills, and hooks are removed from Copilot, and any cached plugin data stored on disk is also cleaned up. Any work already done with those tools is unaffected — only future sessions lose access.
+
+## Further Reading
+
+- [Copilot CLI 1.0.79 release notes](https://github.com/github/copilot-cli/releases/tag/v1.0.79)
+- [Create plugins for Copilot CLI](https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/plugins-creating)
 
 ## Next Steps
 

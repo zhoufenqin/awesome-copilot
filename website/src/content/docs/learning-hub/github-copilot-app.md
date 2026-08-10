@@ -3,7 +3,7 @@ title: 'Getting Started with the GitHub Copilot app'
 description: 'Learn about the GitHub Copilot app, a desktop experience built for agent-native development. Understand its key features and who it''s for.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-06-17
+lastUpdated: 2026-08-10
 estimatedReadingTime: '8 minutes'
 tags:
   - copilot-app
@@ -150,6 +150,8 @@ Each session runs in its own worktree with its own isolated environment. You can
 
 The GitHub Copilot app supports URL deep links. This is useful when you want to open the app or start a session directly from your terminal workflow.
 
+From Copilot CLI, use `/app` to open the current session in the desktop app. This preserves the active session and workspace instead of opening the app home screen. The handoff requires GitHub Copilot app 1.1.3 or later.
+
 Supported schemes:
 
 - `ghapp://` (canonical)
@@ -283,5 +285,10 @@ Enable Agent Merge to automate routine PR workflows:
 - **Set Up Your Repository**: [Copilot Configuration Basics](../copilot-configuration-basics/) — Add custom agents, skills, and instructions
 - **Understand Agent Skills**: [Creating Effective Skills](../creating-effective-skills/) — Build reusable task guidance
 - **Automate with Hooks**: [Automating with Hooks](../automating-with-hooks/) — Add guardrails to autonomous work
+
+## Further Reading
+
+- [Copilot CLI 1.0.79 release notes](https://github.com/github/copilot-cli/releases/tag/v1.0.79)
+- [GitHub Copilot app](https://github.com/features/ai/github-app)
 
 ---
