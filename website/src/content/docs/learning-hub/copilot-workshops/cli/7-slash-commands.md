@@ -2,10 +2,10 @@
 title: "Exercise 7 - Slash commands in GitHub Copilot CLI"
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-08-03
+lastUpdated: 2026-08-11
 ---
 
-Like any good CLI tool, GitHub Copilot CLI includes many slash commands to interact with it. These commands expose advanced functionality, "behind-the-scenes" information, or additional configuration options. You've already explored a couple with `/clear` to clear context and `/mcp` to inspect MCP servers. Let's explore a couple of other powerful ones, including `/context`, `/model`, `/share`, and `/delegate`.
+Like any good CLI tool, GitHub Copilot CLI includes many slash commands to interact with it. These commands expose advanced functionality, "behind-the-scenes" information, or additional configuration options. You've already explored a couple with `/clear` to clear context and `/mcp` to inspect MCP servers. Let's explore a couple of other powerful ones, including `/context`, `/model`, `/share`, `/delegate`, and the newer session-management commands.
 
 ## Scenario
 
@@ -17,6 +17,7 @@ In this exercise you will use:
 - `/context` to see the context Copilot CLI is currently using.
 - `/model` to explore the list of available models and select a new one if you so desire.
 - `/delegate` to optionally hand off a task to cloud agent. This requires cloud agent, available on Copilot Student, Pro, Pro+, Business, or Enterprise — every plan except Copilot Free.
+- `/config model` to set the default model for future sessions.
 
 ## Sharing a session
 
@@ -98,11 +99,20 @@ Different models have different strengths, and different developers have differe
     /model
     ```
 
-2. Note the list of models. Each model will have both its name and cost-per-request modifier listed next to it.
+2. Note the list of models. Each model will have both its name and cost-per-request modifier listed next to it. Recent, Recommended, New, and other models are grouped together; press <kbd>Shift</kbd>+<kbd>Tab</kbd> to switch grouping views.
 3. If you wish, select a new model! Or select <kbd>Esc</kbd> to exit the model list.
 
 > [!CAUTION]
-> Model selection persists in Copilot CLI.
+> `/model` is session-scoped by default. Use `/config model` when you want to set the default for future sessions.
+
+## Planning and working in parallel
+
+Recent Copilot CLI versions add two useful ways to control longer-running work:
+
+- Run `copilot --plan --mode autopilot` to have Copilot create a plan and then implement it without waiting for approval.
+- Use `/worktree new` to start a new session in a separate worktree, keeping parallel tasks isolated from the current session.
+
+You can also use `/app` to open the current session in the GitHub Copilot app. This requires GitHub Copilot app 1.1.3 or later.
 
 ## Delegating to cloud agent (optional)
 
@@ -140,6 +150,7 @@ Using slash commands in Copilot CLI allows you to configure it, share sessions, 
 - `/context` to see the context Copilot CLI is currently using.
 - `/model` to explore the list of available models and select a new one if you so desire.
 - Learned about `/delegate` as an optional bridge to cloud agent.
+- `/config model`, `--plan --mode autopilot`, `/worktree new`, and `/app` for session configuration, execution, isolation, and desktop handoff.
 
 There are of course more slash commands available, and more to explore with Copilot CLI! Let's close out our journey by [reviewing what we've learned][next-lesson] and some next steps to continue learning.
 
@@ -150,6 +161,7 @@ There are of course more slash commands available, and more to explore with Copi
 - [Context Management in Copilot CLI][context-management]
 - [Share Sessions with Copilot CLI][share-sessions]
 - [Selecting Models in Copilot CLI][selecting-models]
+- [Copilot CLI changelog](https://github.com/github/copilot-cli/blob/main/changelog.md)
 
 [previous-lesson]: /learning-hub/copilot-workshops/cli/6-custom-agents/
 [next-lesson]: /learning-hub/copilot-workshops/cli/8-review/
