@@ -3,7 +3,7 @@ title: 'Installing and Using Plugins'
 description: 'Learn how to find, install, and manage plugins that extend GitHub Copilot CLI with reusable agents, skills, hooks, and integrations.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-08-04
+lastUpdated: 2026-08-12
 relatedArticles:
   - ./building-custom-agents.md
   - ./creating-effective-skills.md
@@ -28,7 +28,7 @@ A plugin bundles one or more of the following components:
 | **Hooks** | Event handlers that intercept agent behavior | `hooks.json` or `hooks/` |
 | **MCP Servers** | Model Context Protocol integrations for external tools | `.mcp.json` or `.github/mcp.json` |
 | **LSP Servers** | Language Server Protocol integrations | `lsp.json` or `.github/lsp.json` |
-| **Extensions** | IDE extensions installable via the plugin marketplace (v1.0.62+) | `extensions/` |
+| **Extensions** | IDE extensions installable via the plugin marketplace (v1.0.62+) | `extensions/` or `com.github.copilot/extensions/` |
 
 A plugin might include all of these or just one — for example, a plugin could provide a single specialized agent, or an entire development toolkit with multiple agents, skills, hooks, and MCP server configurations working together.
 
@@ -154,6 +154,22 @@ To automatically register an additional marketplace for everyone working in a re
 ```
 
 With this in place, team members automatically get the `my-org-plugins` marketplace available without running a separate `marketplace add` command. This replaces the older `marketplaces` setting, which was removed in v1.0.16.
+
+To keep a registered marketplace current automatically, add `"autoUpdate": true` to its `extraKnownMarketplaces` entry:
+
+```json
+{
+  "extraKnownMarketplaces": [
+    {
+      "name": "my-org-plugins",
+      "source": "my-org/internal-plugins",
+      "autoUpdate": true
+    }
+  ]
+}
+```
+
+Copilot CLI refreshes that marketplace when a session starts.
 
 ### Pinning a Marketplace to a Specific Commit
 
@@ -301,6 +317,10 @@ Open Plugin Spec v1 also standardizes how MCP server configuration is bundled in
 
 This is useful for plugins that bundle dedicated tooling (for example, a database plugin that ships its own MCP server) — users get both the agent/skill and the required MCP server in a single install step.
 
+### Bundling Extensions
+
+Open Plugin Spec v1 plugins can also ship extensions in a `com.github.copilot/extensions/` directory. Put each extension in its own subdirectory and include its entry module and assets there. Copilot CLI discovers these extensions when the plugin is installed, so the same package can provide agents, skills, MCP configuration, and reusable canvas or IDE extensions.
+
 ## Best Practices
 
 - **Start with a marketplace plugin** before building your own — there may already be one that fits your needs
@@ -338,5 +358,10 @@ A: The plugin's agents, skills, and hooks are removed from Copilot, and any cach
 - **Create Skills**: [Creating Effective Skills](../creating-effective-skills/) — Build skills that can be included in plugins
 - **Build Agents**: [Building Custom Agents](../building-custom-agents/) — Create agents to package in plugins
 - **Add Hooks**: [Automating with Hooks](../automating-with-hooks/) — Configure hooks for plugin automation
+
+## Further Reading
+
+- [Copilot CLI 1.0.79 release notes](https://github.com/github/copilot-cli/releases/tag/v1.0.79)
+- [Creating plugins with GitHub Copilot CLI](https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/plugins-creating)
 
 ---
