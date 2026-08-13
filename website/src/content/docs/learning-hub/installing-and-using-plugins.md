@@ -3,7 +3,7 @@ title: 'Installing and Using Plugins'
 description: 'Learn how to find, install, and manage plugins that extend GitHub Copilot CLI with reusable agents, skills, hooks, and integrations.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-08-04
+lastUpdated: 2026-08-13
 relatedArticles:
   - ./building-custom-agents.md
   - ./creating-effective-skills.md
@@ -300,6 +300,25 @@ The CLI reads the manifest, discovers the bundled agents, skills, and MCP server
 Open Plugin Spec v1 also standardizes how MCP server configuration is bundled in plugins. A plugin can now include an `mcp.json` file at its root to declare MCP servers it requires — using the same format as `.mcp.json` or `.github/mcp.json` in your repository. When you install such a plugin, its MCP server configuration is automatically merged into your active server list.
 
 This is useful for plugins that bundle dedicated tooling (for example, a database plugin that ships its own MCP server) — users get both the agent/skill and the required MCP server in a single install step.
+
+### Extensions in Agent Plugin Spec v1
+
+As of v1.0.79, an Agent Plugin Spec v1 plugin can also package Copilot extensions under `com.github.copilot/extensions/`. This lets a single plugin distribute an extension alongside its agents, skills, hooks, or MCP configuration:
+
+```
+my-plugin/
+└── com.github.copilot/
+    └── extensions/
+        └── my-extension/
+            └── extension.mjs
+```
+
+Use this layout when the extension should be installed and managed as part of the plugin rather than as a separate repository resource.
+
+## Further Reading
+
+- [Copilot CLI changelog (v1.0.79)](https://github.com/github/copilot-cli/blob/main/changelog.md)
+- [Creating plugins for Copilot CLI](https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/plugins-creating)
 
 ## Best Practices
 

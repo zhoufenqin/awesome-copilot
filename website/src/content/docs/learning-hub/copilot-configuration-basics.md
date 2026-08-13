@@ -3,7 +3,7 @@ title: 'Copilot Configuration Basics'
 description: 'Learn how to configure GitHub Copilot at user, workspace, and repository levels to optimize your AI-assisted development experience.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-08-06
+lastUpdated: 2026-08-13
 estimatedReadingTime: '10 minutes'
 tags:
   - configuration
@@ -443,7 +443,7 @@ These files follow the same format as `config.json` and are loaded after the glo
 
 ### Model Picker
 
-The model picker opens in a **full-screen view** with inline reasoning effort adjustment. Use the **← / →** arrow keys to change the reasoning effort level (`low`, `medium`, `high`) directly from the picker without leaving the session. The current reasoning effort level is also displayed in the model header (e.g., `claude-sonnet-4.6 (high)`) so you always know which level is active.
+The model picker opens in a **full-screen view** with inline reasoning effort adjustment. Use the **← / →** arrow keys to change the reasoning effort level (`low`, `medium`, `high`) directly from the picker without leaving the session. The current reasoning effort level is also displayed in the model header (e.g., `claude-sonnet-4.6 (high)`) so you always know which level is active. Models are grouped into **Recent**, **Recommended**, **New**, and other sections; press **Shift+Tab** to switch between grouping views.
 
 **Auto mode and server-side model routing** (v1.0.43+): When you select **Auto** as your model, the CLI uses server-side model routing for real-time model selection. Instead of locking in a single model at session start, Auto mode evaluates each request and routes it to the most appropriate model dynamically. This means straightforward questions can be handled by a faster model while complex reasoning tasks are automatically escalated — without you needing to switch models manually.
 
@@ -786,6 +786,14 @@ copilot --plan          # start in plan mode (propose without executing)
 
 This is useful in scripts or CI pipelines where you want the CLI to immediately begin working in a specific mode without an interactive prompt.
 
+In v1.0.79+, combine `--plan` with `--mode autopilot` to have Copilot create a plan and then implement it without waiting for a second approval:
+
+```bash
+copilot --plan --mode autopilot "Refactor the authentication module"
+```
+
+Use this when you want the planning phase recorded before autonomous implementation begins.
+
 The `--max-autopilot-continues` flag controls how many times Copilot can automatically continue in autopilot mode before pausing for confirmation. The default is 5:
 
 ```bash
@@ -893,6 +901,11 @@ A: Repository-level Copilot configuration (such as `.github/agents/`, `.github/s
 **Q: Where should I put customizations that apply to all my projects?**
 
 A: Use user-level settings in your IDE for personal preferences that should apply everywhere. For customizations specific to a technology or framework (like React conventions), consider creating a collection in the awesome-copilot-hub repository that you can reference across multiple projects.
+
+## Further Reading
+
+- [Copilot CLI changelog (v1.0.79)](https://github.com/github/copilot-cli/blob/main/changelog.md)
+- [Copilot CLI command-line reference](https://docs.github.com/en/copilot/how-tos/copilot-cli/cli-getting-started)
 
 ## Next Steps
 
