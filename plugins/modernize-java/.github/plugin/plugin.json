@@ -1,0 +1,20 @@
+{
+  "name": "modernize-java",
+  "version": "1.22.0-fix-mcp-test",
+  "description": "AI-powered Java modernization and upgrade assistant. Helps upgrade Java and Spring Boot applications to the latest versions.",
+  "author": {
+    "name": "Microsoft"
+  },
+  "keywords": [
+    "java",
+    "modernization",
+    "upgrade",
+    "migration",
+    "spring-boot"
+  ],
+  "license": "MIT",
+  "agents": [
+    "./agents/modernize-java.md"
+  ],
+  "mcpServers": ".mcp.json"
+}
