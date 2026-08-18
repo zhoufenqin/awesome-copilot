@@ -3,7 +3,7 @@ title: 'Copilot Configuration Basics'
 description: 'Learn how to configure GitHub Copilot at user, workspace, and repository levels to optimize your AI-assisted development experience.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-08-10
+lastUpdated: 2026-08-18
 estimatedReadingTime: '10 minutes'
 tags:
   - configuration
@@ -448,6 +448,8 @@ The model picker opens in a **full-screen view** with inline reasoning effort ad
 **Grouped model picker** *(v1.0.79+)*: The model picker now groups models into **Recent**, **Recommended**, **New**, and other sections instead of a single flat list, making it faster to find the model you want. Press **Shift+Tab** to switch between grouping views.
 
 **Session-scoped model selection** *(v1.0.79+)*: `/model` now changes the model for the **current session only** by default. Use `/config model` to set the default model for future sessions — previously `/model` changed both at once, which made it easy to accidentally change your global default while just trying something out in one session.
+
+**Model configuration updates** *(v1.0.80, August 14, 2026)*: Copilot CLI refreshed its model configuration. Treat the model list and availability shown in the picker as authoritative rather than relying on a hard-coded list in scripts or documentation.
 
 **Auto mode and server-side model routing** (v1.0.43+): When you select **Auto** as your model, the CLI uses server-side model routing for real-time model selection. Instead of locking in a single model at session start, Auto mode evaluates each request and routes it to the most appropriate model dynamically. This means straightforward questions can be handled by a faster model while complex reasoning tasks are automatically escalated — without you needing to switch models manually.
 
@@ -919,3 +921,7 @@ Now that you understand Copilot configuration, explore how to create powerful cu
 - **[Defining Custom Instructions](../defining-custom-instructions/)** - Create persistent context for your projects
 - **[Creating Effective Skills](../creating-effective-skills/)** - Build reusable task folders with bundled assets
 - **[Building Custom Agents](../building-custom-agents/)** - Develop specialized assistants
+
+## Further Reading
+
+- [Copilot CLI changelog](https://github.com/github/copilot-cli/blob/main/changelog.md)
