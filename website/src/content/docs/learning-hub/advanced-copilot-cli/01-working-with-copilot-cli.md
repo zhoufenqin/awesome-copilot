@@ -3,7 +3,7 @@ title: '01 · Working with Copilot CLI'
 description: 'Understand the agent model, how the Copilot CLI harness works under the hood, and the everyday mechanics of models and permissions.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-08-26
+lastUpdated: 2026-09-18
 ---
 
 # Module 1 — Working with Copilot CLI
@@ -153,6 +153,20 @@ Copilot offers many [options to control permissions][permissions-docs], includin
 
 > [!WARNING]
 > Enabling all tools (commonly referred to as **YOLO mode**) gives Copilot unrestricted ability to read, modify, and execute files, run shell commands, and call out to MCP servers without asking. A misinterpreted prompt or a prompt-injection attack via fetched content can result in data loss, leaked secrets, or destructive commands. Only use YOLO mode in [trusted, sandboxed environments][risk-mitigation] such as a container or disposable VM, and never in a directory containing credentials or unreviewed code.
+
+## Configure the CLI
+
+Recent Copilot CLI releases add interactive controls for configuring a session without leaving the terminal:
+
+- Use `/config` to open the configuration sidebar.
+- Use `/settings` to manage options such as context-management tools for agents and subagents.
+- Set `editorMode` to `vim`, or run `/vim`, to use modal editing in the composer.
+- Set `transcriptView` to `concise` to group tool activity into expandable work summaries.
+- Use the session and memory import commands to bring in semantic JSONL interchange files.
+
+The CLI also provides direct component commands. Use `copilot instruction list` and `copilot lsp list` to inspect those resources, and use `enable` or `disable` directly with `copilot plugin`, `copilot mcp`, and `copilot skill`. These replace the older cross-kind `copilot plugins` flags.
+
+Model availability depends on your plan and organization policy. Copilot CLI 1.0.85 added support for GPT-6 Astra; use `/models` to see the models available to your account rather than assuming every account can select it.
 
 ## Exercise: Explore the project using Copilot CLI
 
@@ -304,6 +318,7 @@ Next, you'll **build the AI infrastructure** — codify what you just documented
 - [Risk mitigation and YOLO mode][risk-mitigation]
 - [Security measures for GitHub Copilot CLI][security-filter]
 - [Public code filtering][public-code-filter]
+- [Copilot CLI changelog](https://github.com/github/copilot-cli/blob/main/changelog.md)
 
 ---
 
