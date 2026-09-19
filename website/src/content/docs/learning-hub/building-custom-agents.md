@@ -3,7 +3,7 @@ title: 'Building Custom Agents'
 description: 'Learn how to create specialized GitHub Copilot agents with custom personas, tool integrations, and domain expertise.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-09-05
+lastUpdated: 2026-09-19
 estimatedReadingTime: '10 minutes'
 tags:
   - agents
@@ -95,6 +95,20 @@ reasoningEffort: high
 tools: ['codebase', 'terminal', 'github']
 ---
 ```
+
+**include-custom-instructions** *(Copilot CLI v1.0.86+)*: Set this to `true` when a custom agent should also load the repository's project instruction files, such as `AGENTS.md`, `.github/copilot-instructions.md`, or `CLAUDE.md`. This is opt-in for custom agents, so use it when the agent should combine its specialist behavior with the repository's shared conventions:
+
+```yaml
+---
+name: 'Repository-Aware Reviewer'
+description: 'Reviews changes using the repository conventions and testing standards'
+model: Claude Sonnet 4
+include-custom-instructions: true
+tools: ['codebase', 'terminal']
+---
+```
+
+This field is currently documented for Copilot CLI custom agents. It lets an agent inherit project context without copying those rules into the agent file; review the resulting combination for conflicts when the agent has its own instructions.
 
 **tools** (recommended): An array of built-in tools and MCP servers the agent can access. Common tools include:
 
@@ -330,5 +344,6 @@ A: Yes, when defining output format or coding patterns. Show what you expect the
 - **Connect External Tools**: [Understanding MCP Servers](../understanding-mcp-servers/) — Give agents access to databases, APIs, and more
 - **Automate with Coding Agent**: [Using the Copilot Coding Agent](../using-copilot-coding-agent/) — Run agents autonomously on issues
 - **Add Reusable Tasks**: [Creating Effective Skills](../creating-effective-skills/) — Build tasks agents can discover and invoke
+- **Review CLI Changes**: Read the [Copilot CLI 1.0.86 changelog](https://github.com/github/copilot-cli/blob/main/changelog.md#1086---2026-09-17) for the `include-custom-instructions` release note
 
 ---
