@@ -3,7 +3,7 @@ title: '01 · Working with Copilot CLI'
 description: 'Understand the agent model, how the Copilot CLI harness works under the hood, and the everyday mechanics of models and permissions.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-08-26
+lastUpdated: 2026-09-21
 ---
 
 # Module 1 — Working with Copilot CLI
@@ -127,6 +127,17 @@ An AI agent is, in concrete terms, an LLM that runs in a loop, picks tools to ca
 | `task` | Spawn a subagent (e.g., `explore`, `general-purpose`) to handle a focused piece of work in its own context. |
 | `skill` | Invoke a custom skill that bundles instructions or scripts for a specialized job. |
 | MCP server tools | Tools provided by built-in or configured MCP servers — e.g., the GitHub MCP server for issues and pull requests. |
+
+### Recent CLI capabilities
+
+Copilot CLI 1.0.85–1.0.87 added several controls that are useful when you operate the harness directly:
+
+- **Vim mode** is generally available, and the `/config` sidebar provides a central place to inspect session settings.
+- **Context controls** let you manage what is retained in the conversation, while session and memory import make it easier to bring relevant work into a new session.
+- **Routing tiers and organization policies** can control model selection and other CLI behavior for managed environments.
+- **Worktree path templates** let teams standardize where parallel session worktrees are created.
+
+These are CLI capabilities rather than changes to the agent mental model: use them to make sessions more predictable, reproducible, and easier to administer. See the [Copilot CLI 1.0.85 release](https://github.com/github/copilot-cli/releases/tag/v1.0.85), [1.0.86 release](https://github.com/github/copilot-cli/releases/tag/v1.0.86), and [1.0.87 release](https://github.com/github/copilot-cli/releases/tag/v1.0.87) for the version-specific details.
 
 ### Managing permissions
 

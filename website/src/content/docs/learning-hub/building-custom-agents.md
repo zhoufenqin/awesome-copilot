@@ -3,7 +3,7 @@ title: 'Building Custom Agents'
 description: 'Learn how to create specialized GitHub Copilot agents with custom personas, tool integrations, and domain expertise.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-09-05
+lastUpdated: 2026-09-17
 estimatedReadingTime: '10 minutes'
 tags:
   - agents
@@ -55,6 +55,8 @@ When a user selects a custom agent in VS Code or assigns it to an issue via the 
 ## Anatomy of an Agent
 
 Every agent file has two parts: YAML frontmatter and Markdown instructions.
+
+> **Copilot CLI 1.0.86:** A custom agent can explicitly opt into repository instruction files such as `AGENTS.md`, `copilot-instructions.md`, and `CLAUDE.md`. Use this when the agent should share the repository's established guidance; otherwise, keep its context deliberately scoped to the agent definition and the files it needs.
 
 ### Frontmatter Fields
 

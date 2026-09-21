@@ -3,7 +3,7 @@ title: 'Understanding MCP Servers'
 description: 'Learn how Model Context Protocol servers extend GitHub Copilot with access to external tools, databases, and APIs.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-09-05
+lastUpdated: 2026-09-21
 estimatedReadingTime: '8 minutes'
 tags:
   - mcp
@@ -255,6 +255,16 @@ current data distribution.
 ```
 
 Without the MCP server, the agent would have to guess at database structure and performance characteristics. With it, the agent works with real data.
+
+### MCP operations in recent CLI releases
+
+Copilot CLI 1.0.87 improved MCP reconnect and status reporting, making transient server failures easier to diagnose and recover from. It also added configurable warning thresholds for MCP-related conditions. Treat these as operational safeguards rather than a replacement for testing a server before relying on it:
+
+1. Use the CLI's MCP status view to confirm whether a server is connected.
+2. Read the reported warning or error before retrying a request.
+3. Keep server startup, authentication, and recovery steps documented for the team.
+
+See the [Copilot CLI 1.0.87 release notes](https://github.com/github/copilot-cli/releases/tag/v1.0.87) for the current behavior.
 
 ## MCP Sampling (LLM Inference Requests)
 
