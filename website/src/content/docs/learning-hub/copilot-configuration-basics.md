@@ -3,7 +3,7 @@ title: 'Copilot Configuration Basics'
 description: 'Learn how to configure GitHub Copilot at user, workspace, and repository levels to optimize your AI-assisted development experience.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-09-12
+lastUpdated: 2026-09-22
 estimatedReadingTime: '10 minutes'
 tags:
   - configuration
@@ -945,6 +945,17 @@ copilot skill enable my-skill    # enable a specific skill
 ### Command-Line Parsing Rewrite
 
 *(v1.0.84+)* Command-line parsing moved from Commander to a Rust-based grammar that mirrors what the CLI actually parses, which also generates shell completions directly from that grammar — so `copilot <TAB>` now offers root flags alongside subcommands, and each subcommand only shows its own options. As a result of this change, some error and help wording changed, `copilot login --host` now works correctly, and `--max-autopilot-continues` no longer accepts scientific notation as a value.
+
+### Recent CLI configuration updates
+
+The CLI's recent releases add several settings that are useful when standardizing agent sessions:
+
+- **Auto routing defaults** *(v1.0.87+)*: users and administrators can set startup defaults for the Auto routing tier, including strict policies and policies that users may override.
+- **Configurable worktree locations** *(v1.0.87+)*: set `worktreePathTemplate` to control where `/worktree`, `/move`, `/new`, and `--worktree` create worktrees. Templates can use `{repoPath}`, `{repo}`, `{branch}`, and `{branchSlug}`.
+- **Repository instructions for custom agents** *(v1.0.86+)*: set `include-custom-instructions: true` in an agent's frontmatter when that agent should also load repository instruction files such as `AGENTS.md`, `copilot-instructions.md`, or `CLAUDE.md`.
+- **Fork active work** *(v1.0.88+)*: run `/fork` during an active turn to branch the work without waiting for the current turn to finish.
+
+See the [Copilot CLI releases](https://github.com/github/copilot-cli/releases) for the complete version-by-version list, including session, MCP, and managed-policy improvements.
 
 ## Common Questions
 

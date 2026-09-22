@@ -3,7 +3,7 @@ title: 'Automating with Hooks'
 description: 'Learn how to use hooks to automate lifecycle events like formatting, linting, and governance checks during Copilot agent sessions.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-08-28
+lastUpdated: 2026-09-22
 estimatedReadingTime: '8 minutes'
 tags:
   - hooks
@@ -19,6 +19,8 @@ prerequisites:
 Hooks let you run automated scripts at key moments during a Copilot agent session — when a session starts or ends, when the user submits a prompt, or before and after the agent uses a tool. They're the glue between Copilot's AI capabilities and your team's existing tooling: linters, formatters, governance scanners, and notification systems.
 
 This article explains how hooks work, how to configure them, and practical patterns for common automation needs.
+
+Recent [VS Code hook documentation](https://code.visualstudio.com/docs/copilot/chat/chat-agent-mode#_hooks) clarifies that the agent hook harness supports the same lifecycle model, that `PreToolUse` hooks can block a tool call, and that enterprises can manage hook availability through policy. When sharing hook files across Copilot hosts, verify the host's supported events and policy settings before relying on a blocking hook.
 
 ## What Are Hooks?
 

@@ -3,7 +3,7 @@ title: 'Agents and Subagents'
 description: 'Learn how delegated subagents differ from primary agents, when to use them, and how to launch them in VS Code and Copilot CLI.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-09-12
+lastUpdated: 2026-09-22
 estimatedReadingTime: '9 minutes'
 tags:
   - agents
@@ -219,6 +219,12 @@ No. They can run sequentially when one step depends on another, or in parallel w
 **Can I control how many subagents run simultaneously?**
 
 Yes. In v1.0.66+, usage-based billing users can configure **subagent concurrency and depth limits** directly from `/settings`. The concurrency limit controls how many subagents run in parallel; the depth limit controls how many levels deep delegation can chain (preventing runaway recursive subagent trees). These settings give you predictable control over resource consumption during complex orchestrated tasks.
+
+**What changed in recent Copilot CLI releases?**
+
+Copilot CLI 1.0.87 added live elapsed-time display for execution subagents and enabled the rubber-duck agent across model families and low-cost session models. In 1.0.88, custom-agent `reasoning-effort` settings are applied when the agent is selected, while an explicit `--reasoning-effort` still takes precedence. If the selected model does not support the requested level, the CLI reports that instead of silently applying it.
+
+See the [Copilot CLI 1.0.87 release notes](https://github.com/github/copilot-cli/releases/tag/v1.0.87) and [1.0.88 release notes](https://github.com/github/copilot-cli/releases/tag/v1.0.88) for the complete orchestration changes.
 
 ## Next steps
 
