@@ -3,7 +3,7 @@ title: 'Building Custom Agents'
 description: 'Learn how to create specialized GitHub Copilot agents with custom personas, tool integrations, and domain expertise.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-09-05
+lastUpdated: 2026-09-23
 estimatedReadingTime: '10 minutes'
 tags:
   - agents
@@ -95,6 +95,20 @@ reasoningEffort: high
 tools: ['codebase', 'terminal', 'github']
 ---
 ```
+
+In Copilot CLI 1.0.88 and later, the selected custom agent's configured reasoning effort is applied to the session. An explicit `--reasoning-effort` option takes precedence. If the selected model does not support the configured level, the CLI reports that instead of silently applying it.
+
+**include-custom-instructions** *(Copilot CLI v1.0.86+)*: Set this to `true` when the agent should also load repository instruction files such as `AGENTS.md`, `copilot-instructions.md`, or `CLAUDE.md`:
+
+```yaml
+---
+name: 'Repository-aware Reviewer'
+description: 'Reviews changes using the repository guidance files'
+include-custom-instructions: true
+---
+```
+
+Use this when an agent should honor the repository's shared conventions in addition to its own instructions. Keep it disabled for agents that must remain isolated from repository-level guidance.
 
 **tools** (recommended): An array of built-in tools and MCP servers the agent can access. Common tools include:
 
@@ -330,5 +344,10 @@ A: Yes, when defining output format or coding patterns. Show what you expect the
 - **Connect External Tools**: [Understanding MCP Servers](../understanding-mcp-servers/) — Give agents access to databases, APIs, and more
 - **Automate with Coding Agent**: [Using the Copilot Coding Agent](../using-copilot-coding-agent/) — Run agents autonomously on issues
 - **Add Reusable Tasks**: [Creating Effective Skills](../creating-effective-skills/) — Build tasks agents can discover and invoke
+
+## Further Reading
+
+- [Copilot CLI changelog](https://github.com/github/copilot-cli/blob/main/changelog.md) — Release notes for custom-agent behavior and configuration support
+- [GitHub Copilot custom agents](https://docs.github.com/en/copilot/customizing-copilot/github-copilot-agents/about-custom-agents) — Official overview and configuration guidance
 
 ---
