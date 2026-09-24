@@ -3,7 +3,7 @@ title: 'Getting Started with the GitHub Copilot app'
 description: 'Learn about the GitHub Copilot app, a desktop experience built for agent-native development. Understand its key features and who it''s for.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-09-12
+lastUpdated: 2026-09-24
 estimatedReadingTime: '8 minutes'
 tags:
   - copilot-app
@@ -91,6 +91,12 @@ For a hands-on guide to building canvases with `/create-canvas`, see [Working wi
 - Create, edit, or remove your own **personal skills** directly in the app, without hand-authoring a `SKILL.md` file
 
 This makes Customize a good starting point if you want to extend the app's capabilities but don't need the full `copilot plugin` CLI workflow described in [Installing and Using Plugins](../installing-and-using-plugins/).
+
+### Workspace Sandbox and My Work Filters
+
+Recent Copilot app releases add a workspace-local **`/sandbox`** for agent shell commands. Use it when you want agent commands constrained to the current workspace rather than relying only on the broader session environment. Review the sandbox policy before running commands that need access outside the workspace.
+
+The **My Work** view can also generate filters from natural-language descriptions. For example, you can ask for open pull requests awaiting review or issues assigned to you, then refine the generated filter instead of building it manually. This is useful when your inbox spans several repositories and work states.
 
 ### Agent Merge
 
@@ -324,5 +330,10 @@ Enable Agent Merge to automate routine PR workflows:
 - **Set Up Your Repository**: [Copilot Configuration Basics](../copilot-configuration-basics/) — Add custom agents, skills, and instructions
 - **Understand Agent Skills**: [Creating Effective Skills](../creating-effective-skills/) — Build reusable task guidance
 - **Automate with Hooks**: [Automating with Hooks](../automating-with-hooks/) — Add guardrails to autonomous work
+
+## Further Reading
+
+- [GitHub Copilot app v1.1.23 release notes](https://github.com/github/app/releases/tag/v1.1.23)
+- [GitHub Copilot app](https://github.com/features/ai/github-app)
 
 ---
