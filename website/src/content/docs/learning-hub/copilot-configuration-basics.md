@@ -926,6 +926,16 @@ copilot skill enable my-skill    # enable a specific skill
 
 > **Breaking change (v1.0.84+)**: The cross-kind `--kind`, `--scope`, `--mcp`, and `--skill` flags have been removed from `copilot plugins`. `copilot plugins list` is now an alias of `copilot plugin list` and reports only plugins — not MCP servers, skills, instructions, or LSP servers. Scripts that installed skills with `copilot plugins install --skill [--scope project]` should switch to `copilot skill add [--project]`, and scripts reading `.plugins` from `copilot plugins list --json` should expect a flat array instead of the previous `{ plugins, errors }` object.
 
+### Branching an active session with `/fork`
+
+In current Copilot CLI releases, `/fork` can branch a session while a turn is still active. Use it when you want to explore a second direction without waiting for the original turn to finish:
+
+```
+/fork "alternative-approach"
+```
+
+The new session preserves the conversation state up to the fork point and continues independently. This is especially useful for comparing implementation strategies or trying a risky change while the original session continues. See the [Copilot CLI changelog](https://github.com/github/copilot-cli/blob/main/changelog.md) for the release note.
+
 ### The `/config` Sidebar
 
 *(v1.0.84+)* Run `/config` to open a dedicated sidebar configuration screen inside the CLI, giving you a browsable view of your active settings without leaving the terminal session or hand-editing `config.json`:

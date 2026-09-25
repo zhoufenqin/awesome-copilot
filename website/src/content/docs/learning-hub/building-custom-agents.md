@@ -3,7 +3,7 @@ title: 'Building Custom Agents'
 description: 'Learn how to create specialized GitHub Copilot agents with custom personas, tool integrations, and domain expertise.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-09-05
+lastUpdated: 2026-09-25
 estimatedReadingTime: '10 minutes'
 tags:
   - agents
@@ -22,6 +22,20 @@ prerequisites:
 Custom agents are specialized assistants that give GitHub Copilot a focused persona, specific tool access, and domain expertise. Unlike instructions (which apply passively) or skills (which handle individual tasks), agents define a complete working style—they shape how Copilot thinks, what tools it reaches for, and how it communicates throughout an entire session.
 
 This article shows you how to design, structure, and deploy effective agents for your team's workflows.
+
+## Opting into repository instructions
+
+Copilot CLI custom agents can explicitly opt into repository instruction files by setting `include-custom-instructions: true` in the agent frontmatter. This lets an agent use shared guidance from files such as `AGENTS.md`, `copilot-instructions.md`, or `CLAUDE.md` without making that behavior implicit for every agent.
+
+```yaml
+---
+name: "Release Reviewer"
+description: "Reviews release changes against repository standards."
+include-custom-instructions: true
+---
+```
+
+Use this setting when the agent should follow the repository's general conventions. Leave it unset when the agent needs a deliberately isolated instruction context. See the [Copilot CLI changelog](https://github.com/github/copilot-cli/blob/main/changelog.md) for the release notes.
 
 ## What Are Custom Agents?
 

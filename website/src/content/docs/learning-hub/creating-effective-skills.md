@@ -3,7 +3,7 @@ title: 'Creating Effective Skills'
 description: 'Master the art of writing reusable, shareable skill folders that deliver consistent results across your team.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-09-12
+lastUpdated: 2026-09-25
 estimatedReadingTime: '9 minutes'
 tags:
   - skills
@@ -28,6 +28,10 @@ Skills are folders containing a `SKILL.md` file and optional bundled assets. The
 - **Description**: What the skill accomplishes and when it should be triggered
 - **Instructions**: The detailed workflow Copilot executes
 - **Asset references**: Links to bundled templates, scripts, schemas, and reference documents
+
+### Namespaced skill discovery
+
+Copilot CLI supports namespaced custom skill directories. This is useful when a repository or plugin needs to keep similarly named skills separate—for example, `database/migrate` and `frontend/migrate`—while still allowing the CLI's discovery and tool search to identify the right skill. Keep the namespace meaningful, document it in the skill's description, and avoid relying on a short name that could collide with another installed skill. The [Copilot CLI changelog](https://github.com/github/copilot-cli/blob/main/changelog.md) documents this behavior alongside support for ignored skill directories.
 
 **Key advantages over the older prompt file format**:
 - Skills support extended frontmatter for **agent discovery**—agents can find and invoke skills automatically, while prompts required manual slash-command invocation
