@@ -3,7 +3,7 @@ title: 'Installing and Using Plugins'
 description: 'Learn how to find, install, and manage plugins that extend GitHub Copilot CLI with reusable agents, skills, hooks, and integrations.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-09-12
+lastUpdated: 2026-09-26
 relatedArticles:
   - ./building-custom-agents.md
   - ./creating-effective-skills.md
@@ -239,6 +239,16 @@ copilot plugin uninstall my-plugin
 
 > **Component-specific commands (v1.0.84+)**: Individual component kinds now have their own dedicated CLI commands instead of relying on cross-kind flags on `copilot plugins`. Use `copilot instruction list` and `copilot lsp list` to inspect loaded instructions and LSP servers, and use `enable`/`disable` directly on `copilot plugin`, `copilot mcp`, and `copilot skill` (for example, `copilot skill disable my-skill`) instead of the removed `copilot plugins enable/disable --plugin|--mcp|--skill` flags. Installing a standalone skill now uses `copilot skill add [--project]` in place of the retired `copilot plugins install --skill [--scope project]`.
 
+**Machine-readable discovery (v1.0.85+)**: Add `--json` when scripting against plugin and marketplace discovery commands:
+
+```bash
+copilot plugin list --json
+copilot plugin marketplace list --json
+copilot plugin marketplace browse awesome-copilot --json
+```
+
+The JSON output is useful for CI checks, inventory reports, and tooling that needs to inspect installed plugins without parsing terminal formatting.
+
 ### Enabling and Disabling Plugin Components
 
 > **Breaking change (v1.0.81+)**: The `/plugins` command has been **removed**. Its functionality moved to dedicated commands: `/plugin` (plugin dashboard), `/mcp` (MCP servers), and `/skills` (skills), with `/subagents` for custom agents and `/instructions` for instructions.
@@ -368,5 +378,11 @@ A: The plugin's agents, skills, and hooks are removed from Copilot, and any cach
 - **Create Skills**: [Creating Effective Skills](../creating-effective-skills/) — Build skills that can be included in plugins
 - **Build Agents**: [Building Custom Agents](../building-custom-agents/) — Create agents to package in plugins
 - **Add Hooks**: [Automating with Hooks](../automating-with-hooks/) — Configure hooks for plugin automation
+
+## Further Reading
+
+- [Copilot CLI changelog](https://github.com/github/copilot-cli/blob/main/changelog.md) — Version history for plugin, skill, MCP, and marketplace commands
+- [Create and manage plugins](https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/plugins-creating) — Official plugin authoring guidance
+- [Agent Plugins specification](https://agent-plugins.org/) — Cross-tool plugin packaging standard
 
 ---

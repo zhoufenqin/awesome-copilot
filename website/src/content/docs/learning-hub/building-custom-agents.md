@@ -3,7 +3,7 @@ title: 'Building Custom Agents'
 description: 'Learn how to create specialized GitHub Copilot agents with custom personas, tool integrations, and domain expertise.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-09-05
+lastUpdated: 2026-09-26
 estimatedReadingTime: '10 minutes'
 tags:
   - agents
@@ -83,6 +83,18 @@ tools: ['codebase', 'terminal', 'github']
 > tools: ['codebase', 'terminal', 'github']
 > ---
 > ```
+
+> **Repository instructions (Copilot CLI v1.0.86+)**: A custom agent can opt into repository instruction files by setting `include-custom-instructions: true` in its frontmatter. This lets an agent explicitly inherit files such as `AGENTS.md`, `copilot-instructions.md`, or `CLAUDE.md` when the agent needs the project's shared conventions:
+>
+> ```yaml
+> ---
+> name: repository-aware-reviewer
+> description: Reviews changes using the repository's documented conventions
+> include-custom-instructions: true
+> ---
+> ```
+
+> **Reasoning effort (v1.0.88+)**: Set `reasoning-effort` on a custom agent when the selected model supports that control. An explicit CLI `--reasoning-effort` option takes precedence; if the selected model does not offer the requested level, the setting is reported and left unapplied.
 
 **reasoningEffort** *(v1.0.66+)*: Override the reasoning effort level for this agent. Accepted values are `low`, `medium`, and `high`. This lets you pin specific agents to a cost/quality tradeoff regardless of the user's global setting — for example, a quick code-formatting agent can use `low` effort, while a security reviewer uses `high`:
 
