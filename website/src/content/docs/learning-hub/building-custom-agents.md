@@ -3,7 +3,7 @@ title: 'Building Custom Agents'
 description: 'Learn how to create specialized GitHub Copilot agents with custom personas, tool integrations, and domain expertise.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-09-05
+lastUpdated: 2026-09-27
 estimatedReadingTime: '10 minutes'
 tags:
   - agents
@@ -95,6 +95,18 @@ reasoningEffort: high
 tools: ['codebase', 'terminal', 'github']
 ---
 ```
+
+**include-custom-instructions** *(Copilot CLI v1.0.86+)*: Set this to `true` when a custom agent should also load repository instruction files such as `AGENTS.md`, `copilot-instructions.md`, or `CLAUDE.md`. This opt-in keeps the agent's behavior explicit while allowing it to follow the repository's shared conventions:
+
+```yaml
+---
+name: 'AssetTrack Reviewer'
+description: 'Reviews AssetTrack changes against repository conventions'
+include-custom-instructions: true
+---
+```
+
+Use it when the agent needs both its specialized role and the repository's general instructions; leave it unset when the agent must remain isolated from those files.
 
 **tools** (recommended): An array of built-in tools and MCP servers the agent can access. Common tools include:
 

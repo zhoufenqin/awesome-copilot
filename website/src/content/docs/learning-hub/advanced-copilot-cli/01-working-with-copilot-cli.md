@@ -3,7 +3,7 @@ title: '01 · Working with Copilot CLI'
 description: 'Understand the agent model, how the Copilot CLI harness works under the hood, and the everyday mechanics of models and permissions.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-08-26
+lastUpdated: 2026-09-27
 ---
 
 # Module 1 — Working with Copilot CLI
@@ -232,6 +232,18 @@ As you likely expected, there's quite a bit going on behind the scenes with Copi
 
 You explored how Copilot CLI uses tools behind the scenes, and how it requests permissions. You also saw how you can both grant and revoke permissions for Copilot CLI.
 
+## Recent CLI session controls
+
+Recent Copilot CLI releases add several controls that are useful when a session grows beyond a single turn:
+
+- Use `/fork` during an active turn to branch the work into a new session without waiting for the current turn to finish.
+- Use `/config` to open the configuration sidebar, or `/settings` to manage session and agent behavior such as context-management tools.
+- Use `copilot instruction list` and `copilot lsp list` to list those resource types directly. These commands replace the older `copilot plugins list --kind instruction` and `--kind lsp` forms.
+- Use `copilot plugin`, `copilot mcp`, and `copilot skill` with `enable` or `disable` to manage individual resources. These singular commands replace the older `copilot plugins enable/disable --plugin|--mcp|--skill` forms.
+- Import sessions and memories in semantic JSONL format when moving context between compatible tools.
+
+Check the [Copilot CLI changelog][copilot-cli-changelog] for version-specific behavior before using these features in scripts or team documentation.
+
 ## Exercise: Improve documentation
 
 As with many (most?) applications, documentation is lacking in AssetTrack. There's missing documentation and some that's even incorrect. This not only causes challenges when you or your team members look to make updates to the codebase, it also impacts Copilot's ability to generate quality code. Let's perform an audit of our documentation in the project, identify key areas for improvement, and ask Copilot to make the necessary changes.
@@ -304,6 +316,7 @@ Next, you'll **build the AI infrastructure** — codify what you just documented
 - [Risk mitigation and YOLO mode][risk-mitigation]
 - [Security measures for GitHub Copilot CLI][security-filter]
 - [Public code filtering][public-code-filter]
+- [Copilot CLI changelog][copilot-cli-changelog]
 
 ---
 
@@ -322,3 +335,4 @@ Next, you'll **build the AI infrastructure** — codify what you just documented
 [session-docs]: https://docs.github.com/copilot/how-tos/copilot-cli/use-copilot-cli/overview#resume-an-interactive-session
 [session-sync]: https://docs.github.com/copilot/how-tos/copilot-cli/use-copilot-cli/chronicle
 [risk-mitigation]: https://docs.github.com/copilot/concepts/agents/copilot-cli/about-copilot-cli#risk-mitigation
+[copilot-cli-changelog]: https://github.com/github/copilot-cli/blob/main/changelog.md
