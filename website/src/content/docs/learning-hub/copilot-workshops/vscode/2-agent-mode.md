@@ -2,7 +2,7 @@
 title: "Exercise 2 - Adding new functionality with Copilot Agent Mode"
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-08-03
+lastUpdated: 2026-09-29
 ---
 
 Even the simplest of updates to an application typically require updates to multiple files and operations to be performed like running tests. As a developer your flow typically involves tracking down all the necessary files, making the changes, running the tests, debugging, figuring out which file was missed, making another update... The list goes on and on.
@@ -168,6 +168,14 @@ In addition, the tests need to run (and pass) before you merge everything into y
 10. Return to the browser with the website running. Explore the new functionality!
 11. Once you've confirmed everything works and reviewed the code, select **Keep** in the Copilot Chat window.
 
+## Run agent sessions in remote development containers
+
+VS Code can run Copilot Agent sessions inside a Dev Container for projects opened through a remote SSH connection, a tunnel, or WSL. This keeps the agent's tools and dependencies in the same remote development environment as the project, instead of running them on the local desktop.
+
+To use this workflow, connect to the project with the appropriate VS Code remote development extension, reopen the project in its Dev Container, and then start an Agent session from Chat. Review the session's proposed edits and terminal commands as usual. The project must be configured with a working `devcontainer.json`, and the remote environment still needs access to the tools required by the task.
+
+This is useful when the repository's dependencies are too large for a local setup, when the project must run on Linux, or when the source and development services already live on a remote host. For details about this update and the supported remote environments, see the [VS Code 1.139 release notes][vs-code-1-139].
+
 ## Summary and next steps
 
 Congratulations! In this exercise, we explored how to use GitHub Copilot Agent Mode to add new capabilities to the Tailspin Toys website. We learned how:
@@ -196,3 +204,4 @@ As the list of games grows there will be a need for paging to be enabled. Using 
 [next-lesson]: /learning-hub/copilot-workshops/vscode/3-mcp/
 [choose-mode]: https://github.blog/ai-and-ml/github-copilot/copilot-ask-edit-and-agent-modes-what-they-do-and-when-to-use-them/
 [vs-code-agent-mode]: https://code.visualstudio.com/docs/copilot/chat/chat-agent-mode
+[vs-code-1-139]: https://github.com/microsoft/vscode-docs/blob/main/release-notes/v1_139.md
