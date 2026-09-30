@@ -3,7 +3,7 @@ title: '01 · Working with Copilot CLI'
 description: 'Understand the agent model, how the Copilot CLI harness works under the hood, and the everyday mechanics of models and permissions.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-08-26
+lastUpdated: 2026-09-29
 ---
 
 # Module 1 — Working with Copilot CLI
@@ -153,6 +153,17 @@ Copilot offers many [options to control permissions][permissions-docs], includin
 
 > [!WARNING]
 > Enabling all tools (commonly referred to as **YOLO mode**) gives Copilot unrestricted ability to read, modify, and execute files, run shell commands, and call out to MCP servers without asking. A misinterpreted prompt or a prompt-injection attack via fetched content can result in data loss, leaked secrets, or destructive commands. Only use YOLO mode in [trusted, sandboxed environments][risk-mitigation] such as a container or disposable VM, and never in a directory containing credentials or unreviewed code.
+
+## Recent CLI capabilities
+
+Copilot CLI evolves frequently. As of September 2026, recent releases include several capabilities that are useful when choosing how to work:
+
+- **Automatic model routing:** the `auto` tier can choose a suitable model for a request, while `/model` lets you switch to a specific model when you need predictable behavior.
+- **Broader instruction compatibility:** CLI can discover Claude Code rule files in `.claude/rules` as custom instructions, alongside the repository instruction files described in [Module 2][next-lesson].
+- **More composable customization:** namespaced skills are supported, and installed plugins can be enabled or disabled directly with `copilot plugin enable` and `copilot plugin disable`.
+- **Safer iteration:** use `/fork` during an active turn to branch a session without waiting for the current turn to finish.
+
+These details are version-sensitive. Check the [Copilot CLI changelog][copilot-cli-changelog] before teaching a command or relying on a newly released behavior.
 
 ## Exercise: Explore the project using Copilot CLI
 
@@ -304,6 +315,7 @@ Next, you'll **build the AI infrastructure** — codify what you just documented
 - [Risk mitigation and YOLO mode][risk-mitigation]
 - [Security measures for GitHub Copilot CLI][security-filter]
 - [Public code filtering][public-code-filter]
+- [Copilot CLI changelog][copilot-cli-changelog]
 
 ---
 
@@ -322,3 +334,4 @@ Next, you'll **build the AI infrastructure** — codify what you just documented
 [session-docs]: https://docs.github.com/copilot/how-tos/copilot-cli/use-copilot-cli/overview#resume-an-interactive-session
 [session-sync]: https://docs.github.com/copilot/how-tos/copilot-cli/use-copilot-cli/chronicle
 [risk-mitigation]: https://docs.github.com/copilot/concepts/agents/copilot-cli/about-copilot-cli#risk-mitigation
+[copilot-cli-changelog]: https://github.com/github/copilot-cli/blob/main/changelog.md
