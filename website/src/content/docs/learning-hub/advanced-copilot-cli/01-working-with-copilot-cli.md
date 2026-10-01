@@ -3,7 +3,7 @@ title: '01 · Working with Copilot CLI'
 description: 'Understand the agent model, how the Copilot CLI harness works under the hood, and the everyday mechanics of models and permissions.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-08-26
+lastUpdated: 2026-10-01
 ---
 
 # Module 1 — Working with Copilot CLI
@@ -131,6 +131,8 @@ An AI agent is, in concrete terms, an LLM that runs in a loop, picks tools to ca
 ### Managing permissions
 
 When you start Copilot CLI for the first time in a folder, Copilot will prompt you for read access to the folder. You can choose to deny permissions (which will cause Copilot to exit), to allow for that session, or to approve and save that choice for all future sessions. In addition to access to the folder, Copilot will request permissions before running any potentially unsafe operations. You can choose to allow or deny these calls individually, approve for the current session, or to always allow the tool.
+
+**Read-only directory approvals** *(Copilot CLI 1.0.90+)*: When a task only needs to inspect files, you can grant read-only access to a directory for the current session. This narrows the approval compared with allowing general access and expires when the session ends.
 
 > [!NOTE]
 > A [session][session-docs] is the conversation between launching `copilot` and exiting. Sessions are persisted, so you can pick one back up later with `/resume` or `copilot --continue`. Note that "approve for the rest of this session" approvals only apply to the current run; they reset when you exit and resume.
@@ -304,6 +306,7 @@ Next, you'll **build the AI infrastructure** — codify what you just documented
 - [Risk mitigation and YOLO mode][risk-mitigation]
 - [Security measures for GitHub Copilot CLI][security-filter]
 - [Public code filtering][public-code-filter]
+- [Copilot CLI 1.0.90 release notes][copilot-cli-1-0-90]
 
 ---
 
@@ -322,3 +325,4 @@ Next, you'll **build the AI infrastructure** — codify what you just documented
 [session-docs]: https://docs.github.com/copilot/how-tos/copilot-cli/use-copilot-cli/overview#resume-an-interactive-session
 [session-sync]: https://docs.github.com/copilot/how-tos/copilot-cli/use-copilot-cli/chronicle
 [risk-mitigation]: https://docs.github.com/copilot/concepts/agents/copilot-cli/about-copilot-cli#risk-mitigation
+[copilot-cli-1-0-90]: https://github.com/github/copilot-cli/releases/tag/v1.0.90

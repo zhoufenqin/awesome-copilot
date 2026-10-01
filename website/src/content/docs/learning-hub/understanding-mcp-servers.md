@@ -3,7 +3,7 @@ title: 'Understanding MCP Servers'
 description: 'Learn how Model Context Protocol servers extend GitHub Copilot with access to external tools, databases, and APIs.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-09-05
+lastUpdated: 2026-10-01
 estimatedReadingTime: '8 minutes'
 tags:
   - mcp
@@ -209,6 +209,7 @@ Some MCP servers require authentication to connect to protected resources. GitHu
 - **`client_credentials` grant type**: For fully headless environments where no browser is available and no user interaction is possible (such as server-to-server automation or CI pipelines), MCP servers can authenticate using the OAuth `client_credentials` grant type. This enables machine-to-machine authentication without any browser redirect or device code prompt.
 - **Device code flow (RFC 8628)**: When the CLI runs in a **headless or CI environment** where a browser redirect is not possible, it automatically falls back to the device code flow. You'll see a URL and a code to enter on another device to complete authentication.
 - **`/mcp auth`**: If a token expires or you need to switch accounts, run `/mcp auth` inside a session. This opens the re-authentication UI for any OAuth-enabled MCP server and supports account switching. You can re-authenticate without restarting the session.
+- **Scoped GitHub authentication** *(Copilot CLI 1.0.90+)*: Use `--mcp-github-auth` to limit GitHub account authentication to approved MCP server origins. This helps prevent a GitHub credential from being offered to an untrusted server.
 - **Microsoft Entra ID (Azure AD)**: MCP servers that authenticate via Microsoft Entra ID are fully supported. Once you complete the initial login, the CLI caches the authentication and **will not show the consent screen on subsequent connections** — you authenticate once per session rather than every time the server reconnects.
 - **API keys via environment variables**: Pass secrets through the `env` field in the MCP server configuration (see examples above). Never hardcode credentials in `.mcp.json`.
 - **`${input:variableName}` prompts**: VS Code will prompt for these values at runtime, keeping secrets out of committed files.
@@ -317,6 +318,8 @@ For example, a PostgreSQL server that can't connect because `DATABASE_URL` is no
 /mcp list              # show servers attached to this session
 ```
 
+**Recovery after transient discovery failures** *(Copilot CLI 1.0.90+)*: MCP tools can recover after a temporary discovery failure without restarting the session. Unchanged catalogs remain available while the server recovers, so a short-lived outage does not unnecessarily remove tools from an active workflow.
+
 You can also open the `/mcp` manager while the agent is working to toggle servers on or off mid-turn. Add, edit, delete, and re-auth actions wait until the turn finishes, but enabling or disabling a server takes effect immediately.
 
 **Toggling servers on and off** (v1.0.66+): From the `/mcp` list view, you can **enable or disable individual MCP servers** without editing your config file. Select a server in the list and toggle it — disabled servers won't start in future sessions and their tools won't be available to agents. This is useful for temporarily disabling a server that's causing slowdowns or errors without removing it from your configuration entirely.
@@ -375,5 +378,6 @@ A: No. Copilot CLI automatically detects Azure DevOps repositories and disables 
 - **Build Agents**: [Building Custom Agents](../building-custom-agents/) — Create agents that leverage MCP tools
 - **Explore Examples**: Browse the [Agents Directory](../../agents/) for agents built around MCP server integrations
 - **Protocol Deep Dive**: [MCP Specification](https://spec.modelcontextprotocol.io/) — Learn the protocol details for building your own servers
+- **Copilot CLI release notes**: [Version 1.0.90](https://github.com/github/copilot-cli/releases/tag/v1.0.90) — Review recent authentication and MCP reliability changes
 
 ---
