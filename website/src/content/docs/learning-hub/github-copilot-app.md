@@ -3,7 +3,7 @@ title: 'Getting Started with the GitHub Copilot app'
 description: 'Learn about the GitHub Copilot app, a desktop experience built for agent-native development. Understand its key features and who it''s for.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-09-12
+lastUpdated: 2026-10-02
 estimatedReadingTime: '8 minutes'
 tags:
   - copilot-app
@@ -126,6 +126,18 @@ Open app settings directly from the message composer with **`/settings`** *(v1.1
 *(v1.1.20+)* If two installed plugins each ship a custom agent with the same display name, the agent picker now distinguishes them by their owning plugin, so you can tell at a glance which agent you're selecting when names collide.
 
 > **Terminology note (v1.1.20+)**: The "Start from scratch" option in session creation menus and project pickers has been renamed to **"Chat"**.
+
+### Recent Session and Conversation Improvements
+
+The latest Copilot app releases add several capabilities for working across sessions and repositories:
+
+- **Retry with a different configuration** *(v1.1.24+)*: Retry a response with a different model, reasoning effort, or context tier when the first attempt is not a good fit.
+- **Search prompt history** *(v1.1.24+)*: Use `Ctrl+R` on Windows/Linux or `Cmd+R` on macOS to search prompts across sessions.
+- **Nested child chats** *(v1.1.26+)*: Child conversations appear under their parent session, making delegated work easier to follow.
+- **Conversation tools and permissions** *(v1.1.26+)*: Run Bash or PowerShell commands from a conversation, attach files by dragging them into the composer, and manage tool permissions from the composer.
+- **Branch actions** *(v1.1.26+)*: Commit, update, pull, push, or rename the current branch without leaving the app.
+
+The app also supports replies inside existing inline pull request review threads and live MCP progress updates *(v1.1.24+)*. Voice dictation is enabled by default in that release.
 
 ## Who is the Copilot app for?
 
@@ -324,5 +336,11 @@ Enable Agent Merge to automate routine PR workflows:
 - **Set Up Your Repository**: [Copilot Configuration Basics](../copilot-configuration-basics/) — Add custom agents, skills, and instructions
 - **Understand Agent Skills**: [Creating Effective Skills](../creating-effective-skills/) — Build reusable task guidance
 - **Automate with Hooks**: [Automating with Hooks](../automating-with-hooks/) — Add guardrails to autonomous work
+
+## Further Reading
+
+- [GitHub Copilot app 1.1.24 release](https://github.com/github/app/releases/tag/v1.1.24)
+- [GitHub Copilot app 1.1.26 release](https://github.com/github/app/releases/tag/v1.1.26)
+- [GitHub Copilot app](https://github.com/features/ai/github-app)
 
 ---
