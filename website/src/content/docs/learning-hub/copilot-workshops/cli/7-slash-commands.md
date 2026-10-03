@@ -2,7 +2,7 @@
 title: "Exercise 7 - Slash commands in GitHub Copilot CLI"
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-08-03
+lastUpdated: 2026-10-03
 ---
 
 Like any good CLI tool, GitHub Copilot CLI includes many slash commands to interact with it. These commands expose advanced functionality, "behind-the-scenes" information, or additional configuration options. You've already explored a couple with `/clear` to clear context and `/mcp` to inspect MCP servers. Let's explore a couple of other powerful ones, including `/context`, `/model`, `/share`, and `/delegate`.
@@ -104,6 +104,26 @@ Different models have different strengths, and different developers have differe
 > [!CAUTION]
 > Model selection persists in Copilot CLI.
 
+## Recent Copilot CLI capabilities
+
+Copilot CLI has added several controls that are useful when you move beyond
+the basic session workflow:
+
+- Press <kbd>Ctrl</kbd>+<kbd>E</kbd> before starting a conversation to choose
+  whether the run uses your local environment or a cloud run.
+- Use `copilot sandbox ca` to check, create, trust, rotate, or remove the
+  proxy certificate authority used by sandbox networking. In interactive
+  sessions, the corresponding `/sandbox ca` flow uses `create` and `trust`
+  rather than the retired `install` action.
+- Pass `--mcp-github-auth` to restrict GitHub account authentication to
+  approved MCP server origins.
+- Grant a session-scoped, read-only directory approval when a task needs to
+  inspect files outside the current working directory.
+- The model picker includes GPT-6.1 Sol when it is available for your account.
+
+These controls are version-dependent. Check the [Copilot CLI changelog][cli-changelog]
+for the current behavior and availability before relying on them in a workshop.
+
 ## Delegating to cloud agent (optional)
 
 There are times when you want to keep working in your terminal but hand off a longer-running task to Copilot cloud agent. The `/delegate` command sends the current Copilot CLI session to GitHub.com, where cloud agent picks it up, works asynchronously, and opens a pull request when done.
@@ -150,6 +170,7 @@ There are of course more slash commands available, and more to explore with Copi
 - [Context Management in Copilot CLI][context-management]
 - [Share Sessions with Copilot CLI][share-sessions]
 - [Selecting Models in Copilot CLI][selecting-models]
+- [Copilot CLI changelog][cli-changelog]
 
 [previous-lesson]: /learning-hub/copilot-workshops/cli/6-custom-agents/
 [next-lesson]: /learning-hub/copilot-workshops/cli/8-review/
@@ -159,3 +180,4 @@ There are of course more slash commands available, and more to explore with Copi
 [context-management]: https://docs.github.com/copilot/how-tos/use-copilot-agents/use-copilot-cli#context-management
 [share-sessions]: https://docs.github.com/copilot/how-tos/use-copilot-agents/use-copilot-cli#share-sessions
 [selecting-models]: https://docs.github.com/copilot/how-tos/use-copilot-agents/use-copilot-cli#select-an-llm
+[cli-changelog]: https://github.com/github/copilot-cli/blob/main/changelog.md
