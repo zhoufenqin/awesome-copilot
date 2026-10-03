@@ -3,7 +3,7 @@ title: '01 · Working with Copilot CLI'
 description: 'Understand the agent model, how the Copilot CLI harness works under the hood, and the everyday mechanics of models and permissions.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-08-26
+lastUpdated: 2026-10-03
 ---
 
 # Module 1 — Working with Copilot CLI
@@ -35,6 +35,16 @@ This module covers two foundational concepts:
 
 - **Understanding AI agents** — how requests are processed, what makes an agent different from a chat tool, and what context Copilot uses to ground its responses.
 - **Copilot CLI under the hood** — the harness, the tool surface, and the permission model.
+
+## Recent CLI updates
+
+The CLI changes frequently, so check the [official changelog][copilot-cli-changelog] before relying on a command or permission behavior. Recent stable releases add a few safety and environment controls that are especially relevant to the permission model covered in this module:
+
+- **Sandbox proxy CA management**: `copilot sandbox ca` can check, create, trust, rotate, and remove the proxy CA used by sandboxed commands. The former `/sandbox ca install` flow is split into `create` and `trust`, which makes certificate creation and trust an explicit two-step operation.
+- **Session-scoped read-only directory approvals**: when a command needs path access, the permission prompt can grant read-only access for the current session instead of granting broader write access.
+- **Scoped GitHub authentication for MCP**: `--mcp-github-auth` limits which approved MCP server origins may use the signed-in GitHub account. See [Understanding MCP Servers][mcp-auth] for an example.
+
+These controls are additive: they do not replace reviewing tool prompts, trusting only repositories and MCP servers you understand, or using the least-privileged approval that lets the task proceed.
 
 ## Understanding AI agents
 
@@ -296,6 +306,9 @@ Next, you'll **build the AI infrastructure** — codify what you just documented
 
 - [About GitHub Copilot CLI][copilot-cli-docs]
 - [Using GitHub Copilot CLI][copilot-cli-howto]
+- [Copilot CLI changelog][copilot-cli-changelog]
+- [Copilot CLI v1.0.91 release notes][copilot-cli-v1-0-91]
+- [Nish Anil's community Copilot guide][community-copilot-guide]
 - [Tool availability values][available-tools]
 - [Tool permission patterns][permissions-docs]
 - [Resume an interactive session][session-docs]
@@ -314,6 +327,10 @@ Next, you'll **build the AI infrastructure** — codify what you just documented
 [next-lesson]: ../02-building-ai-infrastructure/
 [copilot-cli-docs]: https://docs.github.com/copilot/concepts/agents/about-copilot-cli
 [copilot-cli-howto]: https://docs.github.com/copilot/how-tos/use-copilot-agents/use-copilot-cli
+[copilot-cli-changelog]: https://github.com/github/copilot-cli/blob/main/changelog.md
+[copilot-cli-v1-0-91]: https://github.com/github/copilot-cli/releases/tag/v1.0.91
+[community-copilot-guide]: https://nishanil.github.io/copilot-guide/
+[mcp-auth]: ../../understanding-mcp-servers/#scope-github-authentication-for-mcp-servers
 [plan-mode]: https://docs.github.com/copilot/how-tos/copilot-cli/use-copilot-cli/overview#use-plan-mode
 [public-code-filter]: https://docs.github.com/copilot/responsible-use/copilot-cli#public-code
 [security-filter]: https://docs.github.com/copilot/responsible-use/copilot-cli#security-measures-for-github-copilot-cli

@@ -3,7 +3,7 @@ title: 'Understanding MCP Servers'
 description: 'Learn how Model Context Protocol servers extend GitHub Copilot with access to external tools, databases, and APIs.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-09-05
+lastUpdated: 2026-10-03
 estimatedReadingTime: '8 minutes'
 tags:
   - mcp
@@ -217,6 +217,16 @@ Some MCP servers require authentication to connect to protected resources. GitHu
 
 > **Client ID Metadata Document support (v1.0.83+)**: Copilot CLI can now sign in to MCP servers using a **Client ID Metadata Document (CIMD)** for OAuth, an alternative to Dynamic Client Registration where the client's identity is published as a metadata document at a URL instead of being registered ahead of time with the authorization server.
 
+### Scope GitHub authentication for MCP servers
+
+When a workflow uses GitHub authentication through MCP, limit that authentication to approved server origins instead of making the CLI credential available to every MCP server. Copilot CLI added the `--mcp-github-auth` option in v1.0.90:
+
+```bash
+copilot --mcp-github-auth
+```
+
+Use the resulting approval flow to allow only the MCP server origins you have reviewed, and keep the default authentication behavior when a server does not need GitHub account access.
+
 ## How Agents Use MCP Tools
 
 When an agent declares an MCP server in its `tools` array, Copilot can invoke that server's capabilities during conversation:
@@ -277,6 +287,7 @@ The MCP ecosystem is growing rapidly. Here are key resources:
 - **[Official MCP Servers](https://github.com/modelcontextprotocol/servers)**: Reference implementations for common services (PostgreSQL, Slack, Google Drive, etc.)
 - **[MCP Specification](https://spec.modelcontextprotocol.io/)**: The protocol specification for building your own servers
 - **[Awesome MCP Servers](https://github.com/punkpeye/awesome-mcp-servers)**: Community-curated list of MCP servers
+- **[Copilot CLI v1.0.90 release notes](https://github.com/github/copilot-cli/releases/tag/v1.0.90)**: Changelog entry for scoped GitHub authentication and MCP connection recovery
 
 ### Building Your Own MCP Server
 
