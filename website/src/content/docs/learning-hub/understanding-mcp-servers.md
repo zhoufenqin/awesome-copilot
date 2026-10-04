@@ -3,7 +3,7 @@ title: 'Understanding MCP Servers'
 description: 'Learn how Model Context Protocol servers extend GitHub Copilot with access to external tools, databases, and APIs.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-09-05
+lastUpdated: 2026-10-04
 estimatedReadingTime: '8 minutes'
 tags:
   - mcp
@@ -213,9 +213,23 @@ Some MCP servers require authentication to connect to protected resources. GitHu
 - **API keys via environment variables**: Pass secrets through the `env` field in the MCP server configuration (see examples above). Never hardcode credentials in `.mcp.json`.
 - **`${input:variableName}` prompts**: VS Code will prompt for these values at runtime, keeping secrets out of committed files.
 
+**Scoping GitHub authentication** *(v1.0.90+)*: When a session uses GitHub account authentication for MCP, `--mcp-github-auth` limits that credential to approved MCP server origins instead of making it available to every server:
+
+```bash
+copilot --mcp-github-auth https://api.githubcopilot.com
+```
+
+Use an explicit allowlist of origins and review each server before granting it access.
+
 > **Tip**: If your MCP server uses OAuth with Dynamic Client Registration but hosts its authorization metadata at a non-standard URL (as some enterprise servers like Atlassian Rovo do), Copilot CLI handles this automatically.
 
 > **Client ID Metadata Document support (v1.0.83+)**: Copilot CLI can now sign in to MCP servers using a **Client ID Metadata Document (CIMD)** for OAuth, an alternative to Dynamic Client Registration where the client's identity is published as a metadata document at a URL instead of being registered ahead of time with the authorization server.
+
+## Further Reading
+
+- [Copilot CLI changelog](https://github.com/github/copilot-cli/blob/main/changelog.md)
+- [Configure MCP servers in Copilot CLI](https://docs.github.com/copilot/how-tos/use-copilot-agents/customize-copilot/mcp-servers)
+- [Model Context Protocol authorization](https://modelcontextprotocol.io/specification/latest/basic/authorization)
 
 ## How Agents Use MCP Tools
 

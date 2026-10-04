@@ -3,7 +3,7 @@ title: 'Copilot Configuration Basics'
 description: 'Learn how to configure GitHub Copilot at user, workspace, and repository levels to optimize your AI-assisted development experience.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-09-12
+lastUpdated: 2026-10-04
 estimatedReadingTime: '10 minutes'
 tags:
   - configuration
@@ -447,6 +447,17 @@ These files follow the same format as `config.json` and are loaded after the glo
 
 > **Important (v1.0.36+)**: Custom agents, skills, and commands placed in `~/.claude/` (the Claude Code user directory) are **no longer loaded** by GitHub Copilot CLI. Only `~/.claude/settings.json` is read for configuration. If you previously stored personal agents or skills in `~/.claude/`, move them to the supported locations: `~/.copilot/agents/` for user-level agents, `~/.copilot/skills/` or `~/.agents/skills/` for personal skills, or `.github/agents/` and `.github/skills/` in your repositories for project-level customizations.
 
+**Manage settings from the command line** *(v1.0.92+)*: Use `copilot config` to inspect and update persistent settings without opening an interactive session:
+
+```bash
+copilot config list
+copilot config get model
+copilot config set model auto
+copilot config remove model
+```
+
+Use `copilot config` for durable defaults; use `/model` when you only want to change the current session.
+
 ### Model Picker
 
 The model picker opens in a **full-screen view** with inline reasoning effort adjustment. Use the **← / →** arrow keys to change the reasoning effort level (`low`, `medium`, `high`) directly from the picker without leaving the session. The current reasoning effort level is also displayed in the model header (e.g., `claude-sonnet-4.6 (high)`) so you always know which level is active.
@@ -457,7 +468,7 @@ The model picker opens in a **full-screen view** with inline reasoning effort ad
 
 **Auto mode and server-side model routing** (v1.0.43+): When you select **Auto** as your model, the CLI uses server-side model routing for real-time model selection. Instead of locking in a single model at session start, Auto mode evaluates each request and routes it to the most appropriate model dynamically. This means straightforward questions can be handled by a faster model while complex reasoning tasks are automatically escalated — without you needing to switch models manually.
 
-**Model family aliases** (v1.0.64+): Instead of typing a full model name, you can use short family aliases in the model setting: `opus`, `sonnet`, `haiku` (Anthropic), and `gpt`, `gemini` (Google/OpenAI). The CLI resolves the alias to the latest available model in that family. This is especially useful in scripts or configuration files where you want to track the best model in a family without hardcoding a version string. Recent models available include **Claude Opus 5** (v1.0.75+), the latest in Anthropic's Opus family for the most demanding tasks, **Grok 4.5** (v1.0.76+) from xAI, **Gemini 3.7 Flash** (v1.0.81+), **Claude Fable 5.1** (v1.0.83+), and **GPT-6 Astra** (v1.0.84+). **Grok 4.6** (v1.0.81+) also gains support for the `xhigh` reasoning effort level, one step above `high`, for the most demanding reasoning tasks. The `/model picker` also periodically retires older models no longer worth recommending — a recent cleanup removed several deprecated Claude and Gemini entries (v1.0.83+), so don't be surprised if a model you previously pinned disappears from the list.
+**Model family aliases** (v1.0.64+): Instead of typing a full model name, you can use short family aliases in the model setting: `opus`, `sonnet`, `haiku` (Anthropic), and `gpt`, `gemini` (Google/OpenAI). The CLI resolves the alias to the latest available model in that family. This is especially useful in scripts or configuration files where you want to track the best model in a family without hardcoding a version string. Recent models available include **Claude Opus 5** (v1.0.75+), the latest in Anthropic's Opus family for the most demanding tasks, **Grok 4.5** (v1.0.76+), **Gemini 3.7 Flash** (v1.0.81+), **Claude Fable 5.1** (v1.0.83+), **GPT-6 Astra** (v1.0.84+), and **GPT-6.1 Sol** (v1.0.90+). **Grok 4.6** (v1.0.81+) also gains support for the `xhigh` reasoning effort level, one step above `high`, for the most demanding reasoning tasks. The `/model picker` also periodically retires older models no longer worth recommending — a recent cleanup removed several deprecated Claude and Gemini entries (v1.0.83+), so don't be surprised if a model you previously pinned disappears from the list.
 
 **Model fallback lists** *(v1.0.83+)*: Custom agents can set `model` to a list of several models instead of a single name. Copilot tries each one in order until it finds one available to your account — useful when your preferred model is temporarily rate-limited or not enrolled. Pair this with `model-policy: required` to keep the agent restricted to that list even if you try to switch models mid-session. See [Building Custom Agents](../building-custom-agents/) for the frontmatter syntax.
 
@@ -938,6 +949,18 @@ copilot skill enable my-skill    # enable a specific skill
 
 *(v1.0.84+)* `/sandbox` now supports per-host network allow/deny rules that layer on top of your configured upstream proxy, instead of replacing it. This lets you permit or block specific hosts for sandboxed commands without reconfiguring your whole proxy setup — useful when a sandboxed build or test needs to reach one extra domain (like a package registry mirror) while keeping the rest of your network policy intact.
 
+### Sandbox Proxy CA Trust
+
+*(v1.0.91+)* On systems that inspect HTTPS traffic through a proxy, use `copilot sandbox ca` to check, create, trust, rotate, or remove the proxy CA certificate used by sandboxed commands. The former `/sandbox ca install` flow is now split into `create` and `trust`, and the commands support unattended Windows setup:
+
+```bash
+copilot sandbox ca check
+copilot sandbox ca create
+copilot sandbox ca trust
+```
+
+Only trust a certificate supplied by an administrator or proxy you control.
+
 ### Memory and Session Import
 
 *(v1.0.84+)* New session and memory import commands accept the semantic JSONL interchange format, making it possible to bring saved session history or memory entries into Copilot CLI from an external export rather than starting from scratch.
@@ -985,3 +1008,9 @@ Now that you understand Copilot configuration, explore how to create powerful cu
 - **[Defining Custom Instructions](../defining-custom-instructions/)** - Create persistent context for your projects
 - **[Creating Effective Skills](../creating-effective-skills/)** - Build reusable task folders with bundled assets
 - **[Building Custom Agents](../building-custom-agents/)** - Develop specialized assistants
+
+## Further Reading
+
+- [Copilot CLI changelog](https://github.com/github/copilot-cli/blob/main/changelog.md)
+- [Use GitHub Copilot CLI](https://docs.github.com/copilot/how-tos/use-copilot-agents/use-copilot-cli)
+- [GitHub Copilot changelog](https://github.blog/changelog/label/copilot/)
