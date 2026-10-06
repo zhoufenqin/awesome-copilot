@@ -3,7 +3,7 @@ title: '01 · Working with Copilot CLI'
 description: 'Understand the agent model, how the Copilot CLI harness works under the hood, and the everyday mechanics of models and permissions.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-08-26
+lastUpdated: 2026-10-06
 ---
 
 # Module 1 — Working with Copilot CLI
@@ -154,6 +154,19 @@ Copilot offers many [options to control permissions][permissions-docs], includin
 > [!WARNING]
 > Enabling all tools (commonly referred to as **YOLO mode**) gives Copilot unrestricted ability to read, modify, and execute files, run shell commands, and call out to MCP servers without asking. A misinterpreted prompt or a prompt-injection attack via fetched content can result in data loss, leaked secrets, or destructive commands. Only use YOLO mode in [trusted, sandboxed environments][risk-mitigation] such as a container or disposable VM, and never in a directory containing credentials or unreviewed code.
 
+## Recent Copilot CLI capabilities
+
+Copilot CLI continues to add controls that make it easier to manage the agent loop without weakening the permission model:
+
+- **Manage settings from the CLI:** Use `copilot config list`, `copilot config read`, `copilot config set`, and `copilot config remove` to inspect and change CLI settings without editing configuration files by hand.
+- **Choose where a conversation runs:** Press <kbd>Ctrl</kbd> + <kbd>E</kbd> before a conversation to choose between a local run and a cloud run. This is useful when a task needs a different execution environment or you want to move from exploration to delegated work.
+- **Strengthen sandbox boundaries:** `copilot sandbox ca` can check, create, trust, rotate, and remove proxy CA trust. Sandboxed shells also withhold an ambient `GITHUB_TOKEN` unless it is explicitly configured, reducing accidental credential exposure.
+- **Keep MCP sessions usable:** Remote MCP connections can recover after idle Streamable HTTP sessions expire, MCP tools can recover after transient discovery failures or OAuth reauthentication, and Entra-protected servers can renew access-token-only credentials.
+- **Use current model and agent settings:** Retired models are removed from the picker, model-bound reasoning effort is retained only for the selected custom-agent model, and GPT-6.1 Sol is available when enabled for the account.
+- **Return richer canvas results:** Canvas actions can return images to the model through `invoke_canvas_action`, enabling visual results to participate in the next reasoning step.
+
+These capabilities are version-dependent. Check the [Copilot CLI changelog][copilot-cli-changelog] for the release available in your environment before relying on a particular command or shortcut.
+
 ## Exercise: Explore the project using Copilot CLI
 
 As you likely expected, there's quite a bit going on behind the scenes with Copilot CLI, and a host of options we have for controlling how it behaves. Let's make a couple of requests of Copilot CLI, focusing on how Copilot fulfills the requests we make of it and the tools it calls.
@@ -301,6 +314,7 @@ Next, you'll **build the AI infrastructure** — codify what you just documented
 - [Resume an interactive session][session-docs]
 - [Session sync (chronicle)][session-sync]
 - [Use plan mode][plan-mode]
+- [Copilot CLI changelog][copilot-cli-changelog]
 - [Risk mitigation and YOLO mode][risk-mitigation]
 - [Security measures for GitHub Copilot CLI][security-filter]
 - [Public code filtering][public-code-filter]
@@ -321,4 +335,5 @@ Next, you'll **build the AI infrastructure** — codify what you just documented
 [permissions-docs]: https://docs.github.com/copilot/reference/copilot-cli-reference/cli-command-reference#tool-permission-patterns
 [session-docs]: https://docs.github.com/copilot/how-tos/copilot-cli/use-copilot-cli/overview#resume-an-interactive-session
 [session-sync]: https://docs.github.com/copilot/how-tos/copilot-cli/use-copilot-cli/chronicle
+[copilot-cli-changelog]: https://github.com/github/copilot-cli/blob/main/changelog.md
 [risk-mitigation]: https://docs.github.com/copilot/concepts/agents/copilot-cli/about-copilot-cli#risk-mitigation
