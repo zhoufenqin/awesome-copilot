@@ -3,7 +3,7 @@ title: '01 · Working with Copilot CLI'
 description: 'Understand the agent model, how the Copilot CLI harness works under the hood, and the everyday mechanics of models and permissions.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-08-26
+lastUpdated: 2026-10-07
 ---
 
 # Module 1 — Working with Copilot CLI
@@ -110,6 +110,15 @@ Now it's time for Copilot to do its work! After running through all of the above
 Throughout the entire process, you can send additional messages to Copilot to steer it or further refine your request. Copilot will consider those prompts, again running through the same flow as needed.
 
 And, from here, you will iterate! You'll validate the code and the completed operations, ensuring everything looks good. You'll make additional requests, run more tests, create commits, pull requests, and your standard developer flow.
+
+## Current CLI controls
+
+Copilot CLI 1.0.92 introduced two controls that are useful when you move between local development and cloud-backed work:
+
+- Use `copilot config list`, `copilot config read`, `copilot config set`, and `copilot config remove` to inspect and manage persistent CLI settings without editing JSON by hand. Current releases read user settings from `~/.copilot/settings.json`; user-setting keys in `~/.copilot/config.json` are ignored.
+- Before sending the first prompt in a conversation, press <kbd>Ctrl</kbd>+<kbd>E</kbd> to choose whether the run uses the local environment or a cloud environment. This makes the execution context explicit before the agent starts.
+
+These controls complement the permission model below: choosing an environment does not approve tool use, and each environment still applies its own authentication, policy, and permission settings. Check the [CLI changelog][cli-changelog] for later fixes and behavior changes before using a command in a workshop or team runbook.
 
 ## Copilot CLI under the hood
 
@@ -304,6 +313,8 @@ Next, you'll **build the AI infrastructure** — codify what you just documented
 - [Risk mitigation and YOLO mode][risk-mitigation]
 - [Security measures for GitHub Copilot CLI][security-filter]
 - [Public code filtering][public-code-filter]
+- [Copilot CLI changelog][cli-changelog]
+- [Copilot CLI 1.0.92 release][cli-release-1-0-92]
 
 ---
 
@@ -322,3 +333,5 @@ Next, you'll **build the AI infrastructure** — codify what you just documented
 [session-docs]: https://docs.github.com/copilot/how-tos/copilot-cli/use-copilot-cli/overview#resume-an-interactive-session
 [session-sync]: https://docs.github.com/copilot/how-tos/copilot-cli/use-copilot-cli/chronicle
 [risk-mitigation]: https://docs.github.com/copilot/concepts/agents/copilot-cli/about-copilot-cli#risk-mitigation
+[cli-changelog]: https://github.com/github/copilot-cli/blob/main/changelog.md
+[cli-release-1-0-92]: https://github.com/github/copilot-cli/releases/tag/v1.0.92
