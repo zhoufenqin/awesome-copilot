@@ -3,7 +3,7 @@ title: 'Copilot Configuration Basics'
 description: 'Learn how to configure GitHub Copilot at user, workspace, and repository levels to optimize your AI-assisted development experience.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-09-12
+lastUpdated: 2026-10-08
 estimatedReadingTime: '10 minutes'
 tags:
   - configuration
@@ -903,6 +903,19 @@ echo 'source ~/.copilot-completion.bash' >> ~/.bashrc
 ```
 
 > **Tip**: Reload your shell (`source ~/.bashrc` or open a new terminal) after adding the completion script for changes to take effect.
+
+### Managing Settings from the CLI
+
+*(v1.0.92+; see the [CLI 1.0.92 release notes](https://github.com/github/copilot-cli/releases/tag/v1.0.92))* The `copilot config` subcommands let you inspect and change settings without opening the interactive UI or editing JSON by hand:
+
+```bash
+copilot config list              # list available settings
+copilot config get <key>         # read one setting
+copilot config set <key> <value> # update a setting
+copilot config remove <key>      # remove an override
+```
+
+User settings are read from `~/.copilot/settings.json`. User-setting keys placed in `~/.copilot/config.json` are ignored, so move persistent settings to `settings.json` when upgrading older configurations. In managed environments, administrators can also use `permissions.limitTo` to restrict network requests to approved domains.
 
 ### Vim Mode
 

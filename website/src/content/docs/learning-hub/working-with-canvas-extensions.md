@@ -3,7 +3,7 @@ title: 'Working with Canvas Extensions'
 description: 'Create and iterate on GitHub Copilot app canvases using /create-canvas, then shape them into reusable project or personal extensions.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-06-17
+lastUpdated: 2026-10-08
 estimatedReadingTime: '8 minutes'
 tags:
   - copilot-app
@@ -104,6 +104,8 @@ Treat `joinSession` + `createCanvas` as the contract between UI interactions and
 - Define clear canvas actions and schemas in `createCanvas(...)`
 - Keep action names verb-oriented and predictable (`get_*`, `apply_*`, `sync_*`)
 - Return structured state from handlers so both the UI and agent remain in sync
+
+Canvas actions can also return images to the model *(Copilot CLI v1.0.92+, [release notes](https://github.com/github/copilot-cli/releases/tag/v1.0.92))* Use this for visual results such as rendered diagrams, screenshots, charts, or generated previews, and return the image through the action response rather than asking the model to infer it from text alone. Keep structured metadata alongside the image when the model also needs identifiers, labels, or follow-up action state.
 
 Reference implementations:
 
