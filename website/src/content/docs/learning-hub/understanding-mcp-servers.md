@@ -3,7 +3,7 @@ title: 'Understanding MCP Servers'
 description: 'Learn how Model Context Protocol servers extend GitHub Copilot with access to external tools, databases, and APIs.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-09-05
+lastUpdated: 2026-10-09
 estimatedReadingTime: '8 minutes'
 tags:
   - mcp
@@ -321,6 +321,8 @@ You can also open the `/mcp` manager while the agent is working to toggle server
 
 **Toggling servers on and off** (v1.0.66+): From the `/mcp` list view, you can **enable or disable individual MCP servers** without editing your config file. Select a server in the list and toggle it — disabled servers won't start in future sessions and their tools won't be available to agents. This is useful for temporarily disabling a server that's causing slowdowns or errors without removing it from your configuration entirely.
 
+**Configuration changes between turns** (v1.0.93+): Changes to MCP server configuration are applied between turns without restarting the Copilot CLI session. Enabling or disabling a server before it has been discovered does not start the server, so you can prepare the active server set before the next request and avoid launching integrations unnecessarily.
+
 **Common causes and fixes**:
 
 | Symptom | Likely Cause | Fix |
@@ -338,6 +340,7 @@ You can also open the `/mcp` manager while the agent is working to toggle server
 - **Version control carefully**: Commit `.mcp.json` or `.vscode/mcp.json` for shared server configurations, but use `.gitignore` for any files containing credentials.
 - **Test server connectivity**: Verify MCP servers start correctly before relying on them in agent workflows. Use `/mcp show` to check status and read stderr output in any failure warnings.
 - **Use the MCP allowlist (experimental)**: In high-security environments, the `MCP_ALLOWLIST` feature flag lets you validate MCP servers against a configured registry, blocking unrecognized servers from loading. MCP servers that are blocked by the allowlist policy are **hidden from `/mcp show`** to avoid confusion — only permitted servers appear in that view. This is an experimental feature for enterprise environments requiring strict control over which MCP servers are permitted.
+- **Apply changes deliberately**: After editing server configuration or changing a server's enabled state, wait for the current turn to finish and confirm the result with `/mcp list` before relying on the integration.
 
 ### Organization Policy for Third-Party MCP Servers
 
@@ -375,5 +378,6 @@ A: No. Copilot CLI automatically detects Azure DevOps repositories and disables 
 - **Build Agents**: [Building Custom Agents](../building-custom-agents/) — Create agents that leverage MCP tools
 - **Explore Examples**: Browse the [Agents Directory](../../agents/) for agents built around MCP server integrations
 - **Protocol Deep Dive**: [MCP Specification](https://spec.modelcontextprotocol.io/) — Learn the protocol details for building your own servers
+- **Recent CLI Changes**: [Copilot CLI changelog](https://github.com/github/copilot-cli/blob/main/changelog.md) — follow updates to MCP configuration and discovery
 
 ---

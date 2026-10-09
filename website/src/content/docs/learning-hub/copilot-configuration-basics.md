@@ -3,7 +3,7 @@ title: 'Copilot Configuration Basics'
 description: 'Learn how to configure GitHub Copilot at user, workspace, and repository levels to optimize your AI-assisted development experience.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-09-12
+lastUpdated: 2026-10-09
 estimatedReadingTime: '10 minutes'
 tags:
   - configuration
@@ -945,6 +945,23 @@ copilot skill enable my-skill    # enable a specific skill
 ### Command-Line Parsing Rewrite
 
 *(v1.0.84+)* Command-line parsing moved from Commander to a Rust-based grammar that mirrors what the CLI actually parses, which also generates shell completions directly from that grammar — so `copilot <TAB>` now offers root flags alongside subcommands, and each subcommand only shows its own options. As a result of this change, some error and help wording changed, `copilot login --host` now works correctly, and `--max-autopilot-continues` no longer accepts scientific notation as a value.
+
+### Recent CLI Configuration Updates
+
+Copilot CLI 1.0.93 and 1.0.94 added several configuration and governance changes:
+
+- **Command sandboxing is available to all users** through `/sandbox` and `--sandbox`. Sandbox network allowlists now include localhost and loopback hosts, so local services can be explicitly permitted when a workflow needs them.
+- **Managed permissions can be stricter and more predictable**. Enterprise policy can use `permissions.limitTo` to enforce network domain boundaries, disable Assisted Permissions and keep sessions in Manual Approval mode, and warn when managed settings suppress startup bypass-permission flags.
+- **MCP configuration changes apply between turns** without restarting the session. You can enable or disable a server before discovery without starting that server, which makes it safer to prepare a session with only the integrations it needs.
+- **Context settings are honored at startup and resume**. `--context long_context` applies to new and resumed ACP sessions, and `/context` reports the effective context allowance.
+- **The model picker prioritizes current recommendations**, including Claude Haiku 5.5, alongside the other recently recommended model families.
+
+These settings are useful when standardizing Copilot CLI behavior across a team: keep sandbox and permission policy in managed configuration, use explicit network exceptions for local development, and verify the effective context and model from inside the session before a long-running task.
+
+## Further Reading
+
+- [Copilot CLI changelog](https://github.com/github/copilot-cli/blob/main/changelog.md) — detailed changes for versions 1.0.93–1.0.95
+- [Copilot CLI releases](https://github.com/github/copilot-cli/releases) — stable and pre-release version notes
 
 ## Common Questions
 
