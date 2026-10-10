@@ -3,7 +3,7 @@ title: 'Understanding MCP Servers'
 description: 'Learn how Model Context Protocol servers extend GitHub Copilot with access to external tools, databases, and APIs.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-09-05
+lastUpdated: 2026-10-10
 estimatedReadingTime: '8 minutes'
 tags:
   - mcp
@@ -321,6 +321,8 @@ You can also open the `/mcp` manager while the agent is working to toggle server
 
 **Toggling servers on and off** (v1.0.66+): From the `/mcp` list view, you can **enable or disable individual MCP servers** without editing your config file. Select a server in the list and toggle it — disabled servers won't start in future sessions and their tools won't be available to agents. This is useful for temporarily disabling a server that's causing slowdowns or errors without removing it from your configuration entirely.
 
+**Configuration changes without a restart** (v1.0.93+): Copilot CLI applies MCP server configuration changes between turns, so you can update the server registry or reconnect after an OAuth change without restarting the session. Changes that add, edit, remove, or re-authenticate a server wait until the current turn finishes; enabling or disabling a server from the MCP manager can take effect while the agent is working. If a server's tools are not available immediately, start a new turn after the change and check `/mcp list`.
+
 **Common causes and fixes**:
 
 | Symptom | Likely Cause | Fix |
@@ -374,6 +376,11 @@ A: No. Copilot CLI automatically detects Azure DevOps repositories and disables 
 
 - **Build Agents**: [Building Custom Agents](../building-custom-agents/) — Create agents that leverage MCP tools
 - **Explore Examples**: Browse the [Agents Directory](../../agents/) for agents built around MCP server integrations
-- **Protocol Deep Dive**: [MCP Specification](https://spec.modelcontextprotocol.io/) — Learn the protocol details for building your own servers
+
+## Further Reading
+
+- [Copilot CLI changelog](https://github.com/github/copilot-cli/blob/main/changelog.md) — See current MCP, authentication, and session-management changes
+- [Copilot CLI command reference](https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-command-reference) — Review the `/mcp` commands and configuration options
+- [MCP Specification](https://spec.modelcontextprotocol.io/) — Learn the protocol details for building your own servers
 
 ---
