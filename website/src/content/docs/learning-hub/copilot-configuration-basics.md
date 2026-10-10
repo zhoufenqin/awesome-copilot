@@ -812,6 +812,10 @@ copilot --plan          # start in plan mode (propose without executing)
 
 This is useful in scripts or CI pipelines where you want the CLI to immediately begin working in a specific mode without an interactive prompt.
 
+**Inspecting CLI configuration** *(v1.0.92+)*: Use `copilot config` when you need to inspect or update supported Copilot CLI settings from a shell or script. This complements the interactive `/config` sidebar described below. In managed environments, organization policy can override local settings and startup flags.
+
+**Enterprise permission limits** *(v1.0.93+)*: Administrators can use the `permissions.limitTo` policy to constrain which permission modes users may select. From v1.0.94, managed policy can also disable Assisted Permissions and keep sessions in Manual Approval mode. When a managed policy suppresses a startup bypass flag, the CLI displays a warning so the effective permission mode is visible instead of silently falling back.
+
 **Plan-then-implement (v1.0.79+)**: Combine `--plan` with `--mode autopilot` to have the agent draft a plan first and then implement it without waiting for approval, instead of pausing after the plan for manual confirmation:
 
 ```bash
@@ -856,6 +860,8 @@ copilot login               # browser flow on local terminals, device code on re
 copilot login --web-flow    # force browser flow
 copilot login --device-code # force device code flow
 ```
+
+On macOS, Copilot CLI 1.0.95 can use the native Microsoft Entra broker when it is available, with browser authentication as a fallback. For automation or headless environments, continue to choose an explicitly supported non-interactive flow rather than assuming a browser is available.
 
 
 

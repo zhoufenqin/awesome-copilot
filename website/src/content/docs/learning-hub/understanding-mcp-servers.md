@@ -149,6 +149,8 @@ The available RPCs are:
 
 These are especially useful for plugins and installer scripts that need to self-register or de-register their MCP server as part of install/uninstall flows, without requiring the user to manually edit config files.
 
+**Dynamic configuration and recovery** *(v1.0.93+)*: Copilot CLI can apply MCP enable/disable changes before server discovery, so toggling a server does not require starting every configured server first. The `copilot mcp add` flow also recovers cleanly if MCP configuration initialization is interrupted *(v1.0.94+)*. These behaviors make scripted setup and troubleshooting safer: retry the configuration operation, then inspect the resulting server state instead of manually repairing a partially written configuration.
+
 ### Reading MCP Server Resources via Session RPCs
 
 *(v1.0.70+)* In addition to config management, GitHub Copilot CLI exposes **paginated session RPCs** for reading resources exposed by connected MCP servers. These let agents and tooling access server-provided resource lists and templates without needing direct MCP protocol access:
@@ -316,6 +318,8 @@ For example, a PostgreSQL server that can't connect because `DATABASE_URL` is no
 ```
 /mcp list              # show servers attached to this session
 ```
+
+If a server was enabled or disabled before discovery completed, use `/mcp list` after discovery to confirm the effective session state. This distinguishes a configuration change that was accepted from a server that subsequently failed to start.
 
 You can also open the `/mcp` manager while the agent is working to toggle servers on or off mid-turn. Add, edit, delete, and re-auth actions wait until the turn finishes, but enabling or disabling a server takes effect immediately.
 

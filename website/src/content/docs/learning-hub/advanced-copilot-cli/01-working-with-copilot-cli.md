@@ -3,7 +3,7 @@ title: '01 · Working with Copilot CLI'
 description: 'Understand the agent model, how the Copilot CLI harness works under the hood, and the everyday mechanics of models and permissions.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-08-26
+lastUpdated: 2026-10-10
 ---
 
 # Module 1 — Working with Copilot CLI
@@ -153,6 +153,17 @@ Copilot offers many [options to control permissions][permissions-docs], includin
 
 > [!WARNING]
 > Enabling all tools (commonly referred to as **YOLO mode**) gives Copilot unrestricted ability to read, modify, and execute files, run shell commands, and call out to MCP servers without asking. A misinterpreted prompt or a prompt-injection attack via fetched content can result in data loss, leaked secrets, or destructive commands. Only use YOLO mode in [trusted, sandboxed environments][risk-mitigation] such as a container or disposable VM, and never in a directory containing credentials or unreviewed code.
+
+### Recent CLI permission and environment controls
+
+Copilot CLI 1.0.92–1.0.95 add controls that are particularly useful when you run the agent in automation or under enterprise policy:
+
+- `copilot config` provides a command-line entry point for inspecting and changing supported configuration values, including sandbox credential host settings.
+- Enterprise policy can restrict permission behavior with `permissions.limitTo`, disable Assisted Permissions, or suppress startup bypass flags. When a managed setting suppresses a flag, the CLI surfaces a policy warning rather than silently changing the requested mode.
+- `--sandbox` and `--no-sandbox` remain per-invocation switches. On macOS, login can use native Microsoft Entra broker authentication when available and fall back to the browser flow.
+- ACP sessions now honor `--context` for both new and resumed sessions, so a resumed session does not silently reuse a different context tier.
+
+Treat these controls as part of the permission boundary: check the effective managed settings before relying on unattended execution, and use the least-privileged sandbox and tool approvals that fit the task.
 
 ## Exercise: Explore the project using Copilot CLI
 
@@ -304,6 +315,7 @@ Next, you'll **build the AI infrastructure** — codify what you just documented
 - [Risk mitigation and YOLO mode][risk-mitigation]
 - [Security measures for GitHub Copilot CLI][security-filter]
 - [Public code filtering][public-code-filter]
+- [Copilot CLI releases][copilot-cli-releases]
 
 ---
 
@@ -322,3 +334,4 @@ Next, you'll **build the AI infrastructure** — codify what you just documented
 [session-docs]: https://docs.github.com/copilot/how-tos/copilot-cli/use-copilot-cli/overview#resume-an-interactive-session
 [session-sync]: https://docs.github.com/copilot/how-tos/copilot-cli/use-copilot-cli/chronicle
 [risk-mitigation]: https://docs.github.com/copilot/concepts/agents/copilot-cli/about-copilot-cli#risk-mitigation
+[copilot-cli-releases]: https://github.com/github/copilot-cli/releases
