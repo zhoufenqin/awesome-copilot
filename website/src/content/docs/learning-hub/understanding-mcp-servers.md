@@ -3,7 +3,7 @@ title: 'Understanding MCP Servers'
 description: 'Learn how Model Context Protocol servers extend GitHub Copilot with access to external tools, databases, and APIs.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-09-05
+lastUpdated: 2026-10-11
 estimatedReadingTime: '8 minutes'
 tags:
   - mcp
@@ -133,6 +133,19 @@ copilot --allow-all-mcp-server-instructions
 ```
 
 Use this only with servers you fully trust, since their instructions can influence how Copilot responds throughout the entire session. For most projects, the default behavior is sufficient — only enable this if a specific server requires it (for example, an internal tool whose instructions you control).
+
+### Enabling and Disabling Servers Before Discovery
+
+Copilot CLI can change an MCP server's enabled state before server discovery. This is useful when a project has several configured servers but a task only needs a subset: disabling a server prevents it from being started, while enabling it makes it available for the next discovery cycle.
+
+Use the MCP commands inside a CLI session:
+
+```
+/mcp disable <server-name>
+/mcp enable <server-name>
+```
+
+These commands change availability without requiring every configured server to start first. Use `/mcp show` afterward to review the servers that are available to the session.
 
 ### Managing Persistent MCP Configuration via Server RPCs
 
@@ -375,5 +388,6 @@ A: No. Copilot CLI automatically detects Azure DevOps repositories and disables 
 - **Build Agents**: [Building Custom Agents](../building-custom-agents/) — Create agents that leverage MCP tools
 - **Explore Examples**: Browse the [Agents Directory](../../agents/) for agents built around MCP server integrations
 - **Protocol Deep Dive**: [MCP Specification](https://spec.modelcontextprotocol.io/) — Learn the protocol details for building your own servers
+- **Copilot CLI releases**: Check the [CLI release notes](https://github.com/github/copilot-cli/releases) for changes to MCP configuration and lifecycle commands
 
 ---

@@ -3,7 +3,7 @@ title: 'Understanding Copilot Context'
 description: 'Learn how GitHub Copilot uses context from your code, workspace, and conversation to generate relevant suggestions.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2025-11-28
+lastUpdated: 2026-10-11
 estimatedReadingTime: '8 minutes'
 tags:
   - context
@@ -124,6 +124,18 @@ GitHub Copilot has a maximum token limit for how much context it can process at 
 
 Understanding this prioritization helps you optimize which files to keep open and when to use explicit references.
 
+### Choosing a Context Tier in Copilot CLI
+
+Copilot CLI lets you select the context tier used by a session with the `--context` option:
+
+```bash
+copilot --context <tier>
+```
+
+The option applies when you start a new session and when you resume an existing Agent Client Protocol (ACP) session. This makes the context choice explicit instead of silently falling back to a default or a previously saved tier. Choose the tier that fits the task's context requirements, then verify the effective setting when resuming a session if the task depends on a particular context window.
+
+This setting controls the session's context tier; it does not replace good context practices such as referencing the files, symbols, and requirements that matter to the task.
+
 ## Context Best Practices
 
 Maximize GitHub Copilot's effectiveness by providing clear, relevant context:
@@ -169,4 +181,5 @@ Now that you understand how context works in GitHub Copilot, explore these relat
 - **[What are Agents, Skills, and Instructions](../what-are-agents-skills-instructions/)** - Learn about customization types that provide persistent context
 - **[Copilot Configuration Basics](../copilot-configuration-basics/)** - Configure settings to optimize context usage
 - **[Creating Effective Skills](../creating-effective-skills/)** - Use context effectively in your skills
+- **[Copilot CLI releases](https://github.com/github/copilot-cli/releases)** - Review current CLI changes, including context behavior for new and resumed ACP sessions
 - **Common Pitfalls and Solutions** _(coming soon)_ - Avoid context-related mistakes
