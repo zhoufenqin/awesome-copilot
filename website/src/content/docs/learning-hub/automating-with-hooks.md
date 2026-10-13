@@ -3,7 +3,7 @@ title: 'Automating with Hooks'
 description: 'Learn how to use hooks to automate lifecycle events like formatting, linting, and governance checks during Copilot agent sessions.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-08-28
+lastUpdated: 2026-10-13
 estimatedReadingTime: '8 minutes'
 tags:
   - hooks
@@ -175,6 +175,14 @@ You can also use these as **template variables** directly in the `bash` or `powe
 ```
 
 This makes it straightforward to write plugin hooks that are portable across machines and projects without hardcoding paths.
+
+### Agent-Scoped Declarative Hooks (v1.0.97+)
+
+Custom agents can declare hooks that are scoped to that agent. This is useful when a guardrail belongs to a particular persona or workflow—for example, a release agent can enforce its own validation before it uses a tool without enabling that validation for every agent in the repository.
+
+Use agent-scoped hooks when the behavior should travel with the custom agent. Keep shared repository policies in `.github/hooks/` when they should apply regardless of which agent is active. This separation also makes it easier to reason about which automation can run in a given session.
+
+See the [Copilot CLI changelog](https://github.com/github/copilot-cli/blob/main/changelog.md) and the [official hooks documentation](https://docs.github.com/en/copilot/concepts/agents/coding-agent/about-hooks) for the current agent configuration schema and supported hook events.
 
 ### Event Configuration
 
@@ -685,5 +693,10 @@ A: Yes. Hooks are especially valuable with the coding agent because they provide
 
 - **Build Agents**: [Building Custom Agents](../building-custom-agents/) — Create agents that complement hooks
 - **Automate Further**: [Using the Copilot Coding Agent](../using-copilot-coding-agent/) — Run hooks in autonomous agent sessions
+
+## Further Reading
+
+- [GitHub Copilot CLI changelog](https://github.com/github/copilot-cli/blob/main/changelog.md) — Recent CLI changes, including agent-scoped declarative hooks in version 1.0.97
+- [About hooks](https://docs.github.com/en/copilot/concepts/agents/coding-agent/about-hooks) — Official hook configuration and event reference
 
 ---

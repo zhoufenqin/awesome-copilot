@@ -3,7 +3,7 @@ title: 'Copilot Configuration Basics'
 description: 'Learn how to configure GitHub Copilot at user, workspace, and repository levels to optimize your AI-assisted development experience.'
 authors:
   - GitHub Copilot Learning Hub Team
-lastUpdated: 2026-09-12
+lastUpdated: 2026-10-13
 estimatedReadingTime: '10 minutes'
 tags:
   - configuration
@@ -480,6 +480,19 @@ The `/settings` command (v1.0.61+) opens an interactive dialog to browse and edi
 ```
 
 The settings dialog supports search — type to filter settings by name. Changes take effect immediately.
+
+### Managing Configuration from the CLI (v1.0.92+)
+
+The `copilot config` command provides a scriptable way to inspect and change CLI settings without opening the interactive settings screen. Use the subcommands to list available settings, read a value, set a value, or remove a value:
+
+```bash
+copilot config list
+copilot config read model
+copilot config set model claude-sonnet-4
+copilot config remove model
+```
+
+This is useful for repeatable setup scripts and for troubleshooting the effective configuration. Prefer the command over editing configuration files by hand when automating changes, so the CLI can validate and persist the setting using its supported format.
 
 *(v1.0.70+)* The `/settings` command and the `/model` command both support **`--repo` and `--local` flags** for explicitly scoping which layer of settings you want to view or edit:
 
