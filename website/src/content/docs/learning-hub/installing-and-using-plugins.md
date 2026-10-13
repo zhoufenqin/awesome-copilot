@@ -26,7 +26,7 @@ A plugin bundles one or more of the following components:
 | **Custom Agents** | Specialized AI assistants with tailored expertise | `agents/*.agent.md` |
 | **Skills** | Discrete callable capabilities with bundled resources | `skills/*/SKILL.md` |
 | **Hooks** | Event handlers that intercept agent behavior | `hooks.json` or `hooks/` |
-| **MCP Servers** | Model Context Protocol integrations for external tools | `.mcp.json` or `.github/mcp.json` |
+| **MCP Servers** | Model Context Protocol integrations for external tools | `mcp.json` in the plugin; `.mcp.json` or `.github/mcp.json` in a repository |
 | **LSP Servers** | Language Server Protocol integrations | `lsp.json` or `.github/lsp.json` |
 | **Extensions** | IDE extensions installable via the plugin marketplace (v1.0.62+) | `extensions/` |
 
@@ -40,9 +40,7 @@ Here's the structure of a typical plugin:
 
 ```
 my-plugin/
-├── .github/
-│   └── plugin/
-│       └── plugin.json        # Plugin manifest (name, description, version)
+├── plugin.json                 # Plugin manifest (name, description, version)
 ├── agents/
 │   ├── api-architect.agent.md
 │   └── test-specialist.agent.md
@@ -50,7 +48,7 @@ my-plugin/
 │   └── database-migrations/
 │       ├── SKILL.md
 │       └── scripts/migrate.sh
-├── hooks.json
+├── mcp.json                    # Optional MCP server configuration
 └── README.md
 ```
 
@@ -58,16 +56,21 @@ The `plugin.json` manifest declares what the plugin contains:
 
 ```json
 {
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "my-plugin",
   "description": "API development toolkit with specialized agents and migration skills",
   "version": "1.0.0",
-  "agents": [
-    "./agents/api-architect.md",
-    "./agents/test-specialist.md"
-  ],
-  "skills": [
-    "./skills/database-migrations/"
-  ]
+  "extensions": {
+    "com.github.awesome-copilot": {
+      "agents": [
+        "./agents/api-architect.agent.md",
+        "./agents/test-specialist.agent.md"
+      ],
+      "skills": [
+        "./skills/database-migrations/"
+      ]
+    }
+  }
 }
 ```
 
@@ -330,6 +333,10 @@ The CLI reads the manifest, discovers the bundled agents, skills, and MCP server
 The Agent Plugins standard also standardizes how MCP server configuration is bundled in plugins. A plugin can now include an `mcp.json` file at its root to declare MCP servers it requires — using the same format as `.mcp.json` or `.github/mcp.json` in your repository. When you install such a plugin, its MCP server configuration is automatically merged into your active server list.
 
 This is useful for plugins that bundle dedicated tooling (for example, a database plugin that ships its own MCP server) — users get both the agent/skill and the required MCP server in a single install step.
+
+The plugin file is named `mcp.json` and lives at the plugin root. Do not use the
+legacy `.mcp.json` name for plugin manifests; `.mcp.json` and
+`.github/mcp.json` remain repository-level configuration files.
 
 ## Best Practices
 

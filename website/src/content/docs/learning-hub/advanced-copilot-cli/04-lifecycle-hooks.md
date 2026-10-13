@@ -19,6 +19,7 @@ The AI layer of the agent loop is **probabilistic**. It may or may not remember 
 - The hook event model: which events fire when, what payloads they receive and what output they expect.
 - Hook types: `command`, `http` and `prompt` - and when to reach for each.
 - Scoping hooks to specific locations and tool calls.
+- Declaring hooks that apply only to a specific custom agent.
 - How to wire up a `postToolUse` hook that runs the right tests after each file edit and injects the results back into the agent's context.
 
 
@@ -151,6 +152,18 @@ For a `postToolUse` hook that should only fire when the agent edits or creates a
   "timeoutSec": 60
 }
 ```
+
+### Agent-scoped hooks
+
+Copilot CLI also supports declarative hooks scoped to an individual custom
+agent. Use this when a check belongs to one agent's workflow rather than every
+agent in the repository—for example, a release agent that must validate a
+changelog or a migration agent that must run a schema check. Keep shared
+guardrails in `.github/hooks/`; put agent-specific behavior in the custom
+agent's declaration so it travels with that agent.
+
+Agent-scoped hooks were added in Copilot CLI 1.0.97. See the [release notes][cli-1-0-97]
+for the current schema and behavior.
 
 ### Hook configuration files
 
@@ -365,3 +378,4 @@ Next, you'll put all of the infrastructure to work by adding a real **new featur
 [use-hooks]: https://docs.github.com/copilot/how-tos/copilot-cli/customize-copilot/use-hooks
 [hooks-reference]: https://docs.github.com/copilot/reference/hooks-reference
 [awesome-copilot-hooks]: https://awesome-copilot.github.com/learning-hub/automating-with-hooks/
+[cli-1-0-97]: https://github.com/github/copilot-cli/releases/tag/v1.0.97-0

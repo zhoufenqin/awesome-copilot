@@ -63,6 +63,16 @@ const keyFeatures: { title: string; description: string }[] = [
     description:
       "Carries pull requests through the whole workflow: monitors CI, addresses failing tests and lint, tracks required reviewers, and can merge automatically once every condition is met.",
   },
+  {
+    title: "Organization plugins",
+    description:
+      "The Customize view can expose plugins provided by your organization, making approved team capabilities easier to discover and install.",
+  },
+  {
+    title: "Resumable sessions",
+    description:
+      "Coordinator agents and child sessions can resume work without losing the session structure, making longer-running or parallel tasks easier to manage.",
+  },
 ];
 
 const audiences: { title: string; description: string }[] = [
@@ -492,6 +502,15 @@ export default function GithubCopilotApp() {
             </span>
             <span className={styles.learnMoreCardTitle}>
               Video series
+              <ArrowUpRightIcon size={20} />
+            </span>
+          </a>
+          <a className={styles.learnMoreCard} href="https://github.com/github/app/releases">
+            <span className={styles.learnMoreCardIcon} aria-hidden="true">
+              <ArrowUpRightIcon size={24} />
+            </span>
+            <span className={styles.learnMoreCardTitle}>
+              App release notes
               <ArrowUpRightIcon size={20} />
             </span>
           </a>
